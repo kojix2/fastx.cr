@@ -1,5 +1,7 @@
 # Fastx.cr
 
+[![test](https://github.com/kojix2/fastx.cr/actions/workflows/ci.yml/badge.svg)](https://github.com/kojix2/fastx.cr/actions/workflows/ci.yml)
+
 I hope that in the future this library will be able to read and write FASTA and FASTQ, but currently it can only read FASTA.
 
 **NOTE:** Currently the standard Crystal library does not open bgzip well; it can only handle gzip files.
@@ -32,12 +34,12 @@ end
 reader.close
 ```
 
-High-level API: (Future plan)
+High-level API
 
-)
 ```crystal
 Fastx.open("path_to_your_file.fa") do |reader|
-  reader.each do |name, sequence|
+  reader.as(Fastx::Fasta::Reader) # Necessary in the current situation 
+        .each do |name, sequence|
     puts "Name: #{name}"
     puts "Sequence: #{sequence.to_s}"
   end
