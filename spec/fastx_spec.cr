@@ -5,7 +5,7 @@ describe Fastx do
     (Fastx::VERSION).should be_a(String)
   end
 
-  it "should open a fasta faile" do
+  it "should open a fasta file" do
     reader = Fastx.open(Path[__DIR__, "fixtures/moo.fa"], "r")
     c = 0
     reader.as(Fastx::Fasta::Reader).each do |name, sequence|
