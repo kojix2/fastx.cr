@@ -1,0 +1,9 @@
+name: fastx
+version: 0.1.0
+
+authors:
+  - kojix2 <2xijok@gmail.com>
+
+crystal: '>= 1.12.1'
+
+license: MIT
