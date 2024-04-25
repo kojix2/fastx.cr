@@ -3,13 +3,25 @@ require "./fastq/writer"
 
 module Fastx
   module Fastq
+    def self.open(filename, mode = "r") # block given
+      case mode
+      when "r"
+        Reader.open(filename) { |reader| yield reader }
+      when "w"
+        Writer.open(filename) { |writer| yield writer }
+      else
+        raise ArgumentError.new("Invalid mode: #{mode}")
+      end
+    end
+
     def self.open(filename, mode = "r")
-      if mode == "r"
+      case mode
+      when "r"
         Reader.new(filename)
-      elsif mode == "w"
+      when "w"
         Writer.new(filename)
       else
-        raise ArugmentError.new("Invalid mode: #{mode}")
+        raise ArgumentError.new("Invalid mode: #{mode}")
       end
     end
   end

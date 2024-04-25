@@ -8,11 +8,11 @@ module Fastx
       @gzip : Bool
       @file : File
 
-      def self.open(filename : String | Path, &block)
-        reader = Reader.new(filename)
-        block.call(reader)
+      def self.open(filename : String | Path)
+        reader = self.new(filename)
+        yield reader
       ensure
-        reader.close
+        reader.try &.close
       end
 
       def initialize(filename : String | Path)
@@ -51,7 +51,7 @@ module Fastx
       end
 
       def close
-        @file.try &.close
+        @file.close
       end
     end
   end
