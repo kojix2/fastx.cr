@@ -8,6 +8,13 @@ module Fastx
       @gzip : Bool
       @file : File
 
+      def self.open(filename : String | Path, &block)
+        reader = Reader.new(filename)
+        block.call(reader)
+      ensure
+        reader.close
+      end
+
       def initialize(filename : String | Path)
         @filename = Path.new(filename)
         @gzip = filename.extension == ".gz"

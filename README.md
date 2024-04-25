@@ -19,7 +19,29 @@ I hope that in the future this library will be able to read and write FASTA and 
 ## Usage
 
 ```crystal
-require "fastx"
+# Create a Reader instance for your FASTA file
+reader = Fastx::Fasta::Reader.new("path_to_your_file.fa")
+
+# Go through each sequence in the file
+reader.each do |name, sequence|
+  puts "Name: #{name}"
+  puts "Sequence: #{sequence.to_s}"
+end
+
+# Always remember to close the reader
+reader.close
+```
+
+High-level API: (Future plan)
+
+)
+```crystal
+Fastx.open("path_to_your_file.fa") do |reader|
+  reader.each do |name, sequence|
+    puts "Name: #{name}"
+    puts "Sequence: #{sequence.to_s}"
+  end
+end
 ```
 
 TODO: Write usage instructions here
