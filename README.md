@@ -46,11 +46,9 @@ Fastx.open("path_to_your_file.fa") do |reader|
 end
 ```
 
-TODO: Write usage instructions here
-
 ## Development
 
-TODO: Write development instructions here
+This library is in development.
 
 ## Contributing
 
