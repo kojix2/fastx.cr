@@ -2,6 +2,8 @@
 
 I hope that in the future this library will be able to read and write FASTA and FASTQ, but currently it can only read FASTA.
 
+**NOTE:** Currently the standard Crystal library does not open bgzip well; it can only handle gzip files.
+
 ## Installation
 
 1. Add the dependency to your `shard.yml`:

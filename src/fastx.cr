@@ -1,4 +1,6 @@
 require "./fastx/version"
+require "./fastx/fasta"
+require "./fastx/fastq"
 
 module Fastx
   def self.open(filename : Path | String, mode = "r", format = nil)
