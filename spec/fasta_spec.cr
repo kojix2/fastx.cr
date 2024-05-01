@@ -9,12 +9,12 @@ describe Fastx::Fasta do
       sequence.size.should eq [1000, 900][c]
       s = sequence.to_s
       s.starts_with?(
-        ["CGCAACCCGACTCGAGGCACAGATCCGGTAGCGTTACGAGTAATCAGAGGAAATGGTTTTCGC",
-         "TGAGAGCTAAACTAGACTTAACCGTCGCCTCTACCATACGGGCGCGCTGGGCGGGCCTAAGTT",
+        [CHR1_START,
+         CHR2_START,
         ][c]).should be_true
       s.ends_with?(
-        ["GCCGGTTATCACTTTATGGGGCGTGCTGGAGTTGTCAACATCC",
-         "AACCTGAAGGTAAATGCCCCCCGCCTCTACCGGGCAGGGACACTAGCAGTGCCAAACGTTTGC",
+        [CHR1_END,
+         CHR2_END,
         ][c]).should be_true
       c += 1
     end
@@ -28,14 +28,8 @@ describe Fastx::Fasta do
         name.should eq ["chr1 1", "chr2 2"][c]
         sequence.size.should eq [1000, 900][c]
         s = sequence.to_s
-        s.starts_with?(
-          ["CGCAACCCGACTCGAGGCACAGATCCGGTAGCGTTACGAGTAATCAGAGGAAATGGTTTTCGC",
-           "TGAGAGCTAAACTAGACTTAACCGTCGCCTCTACCATACGGGCGCGCTGGGCGGGCCTAAGTT",
-          ][c]).should be_true
-        s.ends_with?(
-          ["GCCGGTTATCACTTTATGGGGCGTGCTGGAGTTGTCAACATCC",
-           "AACCTGAAGGTAAATGCCCCCCGCCTCTACCGGGCAGGGACACTAGCAGTGCCAAACGTTTGC",
-          ][c]).should be_true
+        s.starts_with?([CHR1_START, CHR2_START][c]).should be_true
+        s.ends_with?([CHR1_END, CHR2_END][c]).should be_true
         c += 1
       end
     end
