@@ -9,8 +9,8 @@ describe Fastx::Fasta::Reader do
       sequence.size.should eq [1000, 900][c]
       s = sequence.to_s
       s.starts_with?(
-        ["CGCAACCCGACTCGAGGCACAGATCCGGTAGCGTTACGAGTAATCAGAGGAAATGGTTTTCGC",
-         "TGAGAGCTAAACTAGACTTAACCGTCGCCTCTACCATACGGGCGCGCTGGGCGGGCCTAAGTT",
+        [CHR1_START,
+         CHR2_START,
         ][c]).should be_true
       s.ends_with?(
         ["GCCGGTTATCACTTTATGGGGCGTGCTGGAGTTGTCAACATCC",
@@ -29,8 +29,8 @@ describe Fastx::Fasta::Reader do
       sequence.size.should eq [1000, 900][c]
       s = sequence.to_s
       s.starts_with?(
-        ["CGCAACCCGACTCGAGGCACAGATCCGGTAGCGTTACGAGTAATCAGAGGAAATGGTTTTCGC",
-         "TGAGAGCTAAACTAGACTTAACCGTCGCCTCTACCATACGGGCGCGCTGGGCGGGCCTAAGTT",
+        [CHR1_START,
+         CHR2_START,
         ][c]).should be_true
       s.ends_with?(
         ["GCCGGTTATCACTTTATGGGGCGTGCTGGAGTTGTCAACATCC",
@@ -49,8 +49,8 @@ describe Fastx::Fasta::Reader do
         sequence.size.should eq [1000, 900][c]
         s = sequence.to_s
         s.starts_with?(
-          ["CGCAACCCGACTCGAGGCACAGATCCGGTAGCGTTACGAGTAATCAGAGGAAATGGTTTTCGC",
-           "TGAGAGCTAAACTAGACTTAACCGTCGCCTCTACCATACGGGCGCGCTGGGCGGGCCTAAGTT",
+          [CHR1_START,
+           CHR2_START,
           ][c]).should be_true
         s.ends_with?(
           ["GCCGGTTATCACTTTATGGGGCGTGCTGGAGTTGTCAACATCC",
