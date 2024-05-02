@@ -1,6 +1,7 @@
 # Fastx.cr
 
 [![test](https://github.com/kojix2/fastx.cr/actions/workflows/ci.yml/badge.svg)](https://github.com/kojix2/fastx.cr/actions/workflows/ci.yml)
+[![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://kojix2.github.io/fastx.cr/)
 
 I hope that in the future this library will be able to read and write FASTA and FASTQ, but currently it can only read FASTA.
 
