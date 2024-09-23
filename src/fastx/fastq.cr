@@ -3,6 +3,13 @@ require "./fastq/writer"
 
 module Fastx
   module Fastq
+    enum FIELD : UInt8
+      IDENTIFIER = 0
+      SEQUENCE   = 1
+      PLUS       = 2
+      QUALITY    = 3
+    end
+
     def self.open(filename, mode = "r") # block given
       case mode
       when "r"

@@ -12,4 +12,15 @@ module Fastx
       super(msg)
     end
   end
+
+  class InvalidFormatError < FastxError
+    def initialize(filename, idx, line, message = nil)
+      msg = <<-ERROR
+      Invalid Format: #{filename}:#{idx}
+        #{line}
+      #{message}
+      ERROR
+      super(msg)
+    end
+  end
 end
