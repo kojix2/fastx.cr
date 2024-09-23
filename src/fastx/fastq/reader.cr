@@ -17,7 +17,7 @@ module Fastx
 
       def initialize(filename : String | Path)
         @filename = Path.new(filename)
-        @gzip = filename.extension == ".gz"
+        @gzip = @filename.extension == ".gz"
         @file = File.open(filename)
       end
 

@@ -4,7 +4,7 @@ require "./fastx/fastq"
 
 module Fastx
   def self.open(filename : Path | String, mode = "r", format = nil) # block given
-    case File
+    case filename.to_s
     when /\.fastq$/, /\.fq$/, /\.fastq.gz$/, /\.fq.gz$/
       Fastq.open(filename, mode) { |f| yield f }
     when /\.fasta$/, /\.fa$/, /\.fasta.gz$/, /\.fa.gz$/
