@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="fastx">
-  <title>Fastx::InvalidCharacterError - fastx main</title>
+  <title>Fastx::InvalidFormatError - fastx main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -112,12 +112,12 @@
       
     </li>
   
-  <li class=" current" data-id="fastx/Fastx/InvalidCharacterError" data-name="fastx::invalidcharactererror">
+  <li class=" " data-id="fastx/Fastx/InvalidCharacterError" data-name="fastx::invalidcharactererror">
       <a href="../Fastx/InvalidCharacterError.html">InvalidCharacterError</a>
       
     </li>
   
-  <li class=" " data-id="fastx/Fastx/InvalidFormatError" data-name="fastx::invalidformaterror">
+  <li class=" current" data-id="fastx/Fastx/InvalidFormatError" data-name="fastx::invalidformaterror">
       <a href="../Fastx/InvalidFormatError.html">InvalidFormatError</a>
       
     </li>
@@ -136,12 +136,12 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Fastx::<wbr>InvalidCharacterError
+  <span class="kind">class</span> Fastx::<wbr>InvalidFormatError
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Fastx/InvalidCharacterError.html">Fastx::InvalidCharacterError</a></li><li class="superclass"><a href="../Fastx/FastxError.html">Fastx::FastxError</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Fastx/InvalidFormatError.html">Fastx::InvalidFormatError</a></li><li class="superclass"><a href="../Fastx/FastxError.html">Fastx::FastxError</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -169,7 +169,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/5dd15e7237cf93a0f2b7037e46ee50c6c6604750/src/fastx/exceptions.cr#L5" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/5dd15e7237cf93a0f2b7037e46ee50c6c6604750/src/fastx/exceptions.cr#L16" target="_blank">
         fastx/exceptions.cr
       </a>
     
@@ -191,7 +191,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28filename%2Cname%2Csequence%29-class-method" class="signature"><strong>.new</strong>(filename, name, sequence)</a>
+        <a href="#new%28filename%2Cidx%2Cline%2Cmessage%3Dnil%29-class-method" class="signature"><strong>.new</strong>(filename, idx, line, message = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -271,18 +271,18 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(filename,name,sequence)-class-method">
+    <div class="entry-detail" id="new(filename,idx,line,message=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(filename, name, sequence)
+        def self.<strong>new</strong>(filename, idx, line, message = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28filename%2Cname%2Csequence%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28filename%2Cidx%2Cline%2Cmessage%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/5dd15e7237cf93a0f2b7037e46ee50c6c6604750/src/fastx/exceptions.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/5dd15e7237cf93a0f2b7037e46ee50c6c6604750/src/fastx/exceptions.cr#L17" target="_blank">View source</a>]
         
       </div>
     </div>

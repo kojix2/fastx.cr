@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../../js/doc.js"></script>
 
   <meta name="repository-name" content="fastx">
-  <title>Fastx::Fasta::Writer - fastx main</title>
+  <title>Fastx::Fastq::FIELD - fastx main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../../";
   </script>
@@ -62,7 +62,7 @@
       
         <ul>
   
-  <li class="parent open current" data-id="fastx/Fastx/Fasta" data-name="fastx::fasta">
+  <li class="parent " data-id="fastx/Fastx/Fasta" data-name="fastx::fasta">
       <a href="../../Fastx/Fasta.html">Fasta</a>
       
         <ul>
@@ -72,7 +72,7 @@
       
     </li>
   
-  <li class=" current" data-id="fastx/Fastx/Fasta/Writer" data-name="fastx::fasta::writer">
+  <li class=" " data-id="fastx/Fastx/Fasta/Writer" data-name="fastx::fasta::writer">
       <a href="../../Fastx/Fasta/Writer.html">Writer</a>
       
     </li>
@@ -82,12 +82,12 @@
       
     </li>
   
-  <li class="parent " data-id="fastx/Fastx/Fastq" data-name="fastx::fastq">
+  <li class="parent open current" data-id="fastx/Fastx/Fastq" data-name="fastx::fastq">
       <a href="../../Fastx/Fastq.html">Fastq</a>
       
         <ul>
   
-  <li class=" " data-id="fastx/Fastx/Fastq/FIELD" data-name="fastx::fastq::field">
+  <li class=" current" data-id="fastx/Fastx/Fastq/FIELD" data-name="fastx::fastq::field">
       <a href="../../Fastx/Fastq/FIELD.html">FIELD</a>
       
     </li>
@@ -136,12 +136,10 @@
 <div class="main-content">
 <h1 class="type-name">
 
-  <span class="kind">class</span> Fastx::<wbr>Fasta::<wbr>Writer
+  <span class="kind">enum</span> Fastx::<wbr>Fastq::<wbr>FIELD
 
 </h1>
 
-
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../../Fastx/Fasta/Writer.html">Fastx::Fasta::Writer</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -169,8 +167,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/5dd15e7237cf93a0f2b7037e46ee50c6c6604750/src/fastx/fasta/writer.cr#L6" target="_blank">
-        fastx/fasta/writer.cr
+      <a href="https://github.com/kojix2/fastx.cr/blob/5dd15e7237cf93a0f2b7037e46ee50c6c6604750/src/fastx/fastq.cr#L6" target="_blank">
+        fastx/fastq.cr
       </a>
     
     <br/>
@@ -178,43 +176,43 @@
 
 
 
-
-
-  <h2>
-    <a id="constructors" class="anchor" href="#constructors">
+  
+    <h2>
+      <a id="enum-members" class="anchor" href="#enum-members">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
 </a>
-    Constructors
-  </h2>
-  <ul class="list-summary">
+      Enum Members
+    </h2>
+  
+  <dl>
     
-      <li class="entry-summary">
-        <a href="#new%28filename%3AString%7CPath%29-class-method" class="signature"><strong>.new</strong>(filename : String | Path)</a>
-        
-      </li>
+      <dt class="entry-const" id="IDENTIFIER">
+        <strong>IDENTIFIER</strong> = <code><span class="n">0_u8</span></code>
+      </dt>
+      
     
-  </ul>
+      <dt class="entry-const" id="SEQUENCE">
+        <strong>SEQUENCE</strong> = <code><span class="n">1_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="PLUS">
+        <strong>PLUS</strong> = <code><span class="n">2_u8</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="QUALITY">
+        <strong>QUALITY</strong> = <code><span class="n">3_u8</span></code>
+      </dt>
+      
+    
+  </dl>
 
 
 
-  <h2>
-    <a id="class-method-summary" class="anchor" href="#class-method-summary">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Class Method Summary
-  </h2>
-  <ul class="list-summary">
-    
-      <li class="entry-summary">
-        <a href="#open%28filename%3AString%7CPath%2C%26%29-class-method" class="signature"><strong>.open</strong>(filename : String | Path, &)</a>
-        
-      </li>
-    
-  </ul>
+
 
 
 
@@ -231,7 +229,22 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#close-instance-method" class="signature"><strong>#close</strong></a>
+        <a href="#identifier%3F-instance-method" class="signature"><strong>#identifier?</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#plus%3F-instance-method" class="signature"><strong>#plus?</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#quality%3F-instance-method" class="signature"><strong>#quality?</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#sequence%3F-instance-method" class="signature"><strong>#sequence?</strong></a>
         
       </li>
     
@@ -267,62 +280,36 @@
 
 
   
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+    
+
+
+  
 </div>
 
 
-  <h2>
-    <a id="constructor-detail" class="anchor" href="#constructor-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Constructor Detail
-  </h2>
-  
-    <div class="entry-detail" id="new(filename:String|Path)-class-method">
-      <div class="signature">
-        
-        def self.<strong>new</strong>(filename : String | Path)
 
-        <a class="method-permalink" href="#new%28filename%3AString%7CPath%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/fastx.cr/blob/5dd15e7237cf93a0f2b7037e46ee50c6c6604750/src/fastx/fasta/writer.cr#L18" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-
-
-
-  <h2>
-    <a id="class-method-detail" class="anchor" href="#class-method-detail">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Class Method Detail
-  </h2>
-  
-    <div class="entry-detail" id="open(filename:String|Path,&amp;)-class-method">
-      <div class="signature">
-        
-        def self.<strong>open</strong>(filename : String | Path, &)
-
-        <a class="method-permalink" href="#open%28filename%3AString%7CPath%2C%26%29-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/fastx.cr/blob/5dd15e7237cf93a0f2b7037e46ee50c6c6604750/src/fastx/fasta/writer.cr#L11" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
 
 
 
@@ -337,18 +324,66 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="close-instance-method">
+    <div class="entry-detail" id="identifier?-instance-method">
       <div class="signature">
         
-        def <strong>close</strong>
+        def <strong>identifier?</strong>
 
-        <a class="method-permalink" href="#close-instance-method">#</a>
+        <a class="method-permalink" href="#identifier%3F-instance-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/5dd15e7237cf93a0f2b7037e46ee50c6c6604750/src/fastx/fasta/writer.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/5dd15e7237cf93a0f2b7037e46ee50c6c6604750/src/fastx/fastq.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="plus?-instance-method">
+      <div class="signature">
+        
+        def <strong>plus?</strong>
+
+        <a class="method-permalink" href="#plus%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/fastx.cr/blob/5dd15e7237cf93a0f2b7037e46ee50c6c6604750/src/fastx/fastq.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="quality?-instance-method">
+      <div class="signature">
+        
+        def <strong>quality?</strong>
+
+        <a class="method-permalink" href="#quality%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/fastx.cr/blob/5dd15e7237cf93a0f2b7037e46ee50c6c6604750/src/fastx/fastq.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="sequence?-instance-method">
+      <div class="signature">
+        
+        def <strong>sequence?</strong>
+
+        <a class="method-permalink" href="#sequence%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/fastx.cr/blob/5dd15e7237cf93a0f2b7037e46ee50c6c6604750/src/fastx/fastq.cr#L8" target="_blank">View source</a>]
         
       </div>
     </div>
