@@ -12,7 +12,9 @@ describe Fastx::Fasta::Reader do
       s.ends_with?([CHR1_END, CHR2_END][c]).should be_true
       c += 1
     end
+    reader.closed?.should be_false
     reader.close
+    reader.closed?.should be_true
   end
 
   it "should read a gzip compressed fasta file" do
@@ -26,7 +28,9 @@ describe Fastx::Fasta::Reader do
       s.ends_with?([CHR1_END, CHR2_END][c]).should be_true
       c += 1
     end
+    reader.closed?.should be_false
     reader.close
+    reader.closed?.should be_true
   end
 
   it "should open a fasta file with block" do

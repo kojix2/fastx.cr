@@ -24,6 +24,10 @@ module Fastx
       def close
         @file.close
       end
+
+      def closed?
+        @file.closed?
+      end
     end
   end
 end
