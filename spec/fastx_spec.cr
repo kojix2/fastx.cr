@@ -63,4 +63,15 @@ describe Fastx do
       end
     end
   end
+
+  it "should write a fasta file" do
+    tempfile = File.tempfile("quack.fa")
+    writer = Fastx.open(tempfile.path, "w").as(Fastx::Fasta::Writer)
+    writer.write("chr1 1", "A" * 10)
+    writer.write("chr2 2", "C" * 9)
+    writer.close
+    File.read(tempfile.path)
+      .should eq(">chr1 1\nAAAAAAAAAA\n>chr2 2\nCCCCCCCCC\n")
+    tempfile.delete
+  end
 end

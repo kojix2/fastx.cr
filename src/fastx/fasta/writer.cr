@@ -21,6 +21,11 @@ module Fastx
         @file = File.open(filename, "w")
       end
 
+      def write(name : String, sequence : String)
+        @file.puts(">#{name}")
+        @file.puts(sequence)
+      end
+
       def close
         @file.close
       end
