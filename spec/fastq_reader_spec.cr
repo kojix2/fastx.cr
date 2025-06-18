@@ -88,4 +88,92 @@ describe Fastx::Fastq::Reader do
     reader.close
     tempfile.delete
   end
+
+  it "should read a fastq file with each_copy" do
+    reader = Fastx::Fastq::Reader.new(Path[__DIR__, "fixtures/moo.fq"])
+    c = 0
+    reader.each_copy do |id, sequence, quality|
+      id.should eq ["chr1_106_509:0/1", "chr1_437_492:1/1"][c]
+      sequence.size.should eq 100
+      quality.size.should eq 100
+      sequence.should be_a(String)
+      quality.should be_a(String)
+      sequence.should eq [FQ_SEQ_1, FQ_SEQ_2][c]
+      quality.should eq [FQ_QUAL_1, FQ_QUAL_2][c]
+      c += 1
+    end
+    reader.close
+  end
+
+  it "should open a fastq file with block using each_copy" do
+    Fastx::Fastq::Reader.open(Path[__DIR__, "fixtures/moo.fq"]) do |reader|
+      c = 0
+      reader.each_copy do |id, sequence, quality|
+        id.should eq ["chr1_106_509:0/1", "chr1_437_492:1/1"][c]
+        sequence.size.should eq 100
+        quality.size.should eq 100
+        sequence.should be_a(String)
+        quality.should be_a(String)
+        sequence.should eq [FQ_SEQ_1, FQ_SEQ_2][c]
+        quality.should eq [FQ_QUAL_1, FQ_QUAL_2][c]
+        c += 1
+      end
+    end
+  end
+
+  it "should raise InvalidFormatError for invalid identifier line with each_copy" do
+    tempfile = File.tempfile("invalid.fq")
+    File.write(tempfile.path, "invalid_identifier\nACGT\n+\n!!!!\n")
+
+    reader = Fastx::Fastq::Reader.new(tempfile.path)
+    expect_raises(Fastx::InvalidFormatError) do
+      reader.each_copy do |id, sequence, quality|
+        # This should raise an exception
+      end
+    end
+    reader.close
+    tempfile.delete
+  end
+
+  it "should raise InvalidFormatError for invalid plus line with each_copy" do
+    tempfile = File.tempfile("invalid.fq")
+    File.write(tempfile.path, "@test\nACGT\ninvalid_plus\n!!!!\n")
+
+    reader = Fastx::Fastq::Reader.new(tempfile.path)
+    expect_raises(Fastx::InvalidFormatError) do
+      reader.each_copy do |id, sequence, quality|
+        # This should raise an exception
+      end
+    end
+    reader.close
+    tempfile.delete
+  end
+
+  it "should raise InvalidCharacterError for non-ASCII characters in sequence with each_copy" do
+    tempfile = File.tempfile("invalid.fq")
+    File.write(tempfile.path, "@test\nACGT\u{1F600}ACGT\n+\n!!!!!!!\n")
+
+    reader = Fastx::Fastq::Reader.new(tempfile.path)
+    expect_raises(Fastx::InvalidCharacterError) do
+      reader.each_copy do |id, sequence, quality|
+        # This should raise an exception
+      end
+    end
+    reader.close
+    tempfile.delete
+  end
+
+  it "should raise InvalidCharacterError for non-ASCII characters in quality with each_copy" do
+    tempfile = File.tempfile("invalid.fq")
+    File.write(tempfile.path, "@test\nACGTACGT\n+\n!!!\u{1F600}!!!\n")
+
+    reader = Fastx::Fastq::Reader.new(tempfile.path)
+    expect_raises(Fastx::InvalidCharacterError) do
+      reader.each_copy do |id, sequence, quality|
+        # This should raise an exception
+      end
+    end
+    reader.close
+    tempfile.delete
+  end
 end

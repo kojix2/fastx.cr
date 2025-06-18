@@ -39,6 +39,14 @@ Fastx::Fasta::Reader.open("file.fa") do |reader|
     puts "Sequence: #{sequence.to_s}"
   end
 end
+
+# Using each_copy for String copies (avoids buffer reuse issues)
+Fastx::Fasta::Reader.open("file.fa") do |reader|
+  reader.each_copy do |name, sequence|
+    puts "Name: #{name}"
+    puts "Sequence: #{sequence}" # sequence is already a String
+  end
+end
 ```
 
 ### Reading FASTQ files
@@ -59,6 +67,15 @@ Fastx::Fastq::Reader.open("file.fq") do |reader|
     puts "ID: #{identifier}"
     puts "Sequence: #{sequence.to_s}"
     puts "Quality: #{quality.to_s}"
+  end
+end
+
+# Using each_copy for String copies (avoids buffer reuse issues)
+Fastx::Fastq::Reader.open("file.fq") do |reader|
+  reader.each_copy do |identifier, sequence, quality|
+    puts "ID: #{identifier}"
+    puts "Sequence: #{sequence}" # sequence is already a String
+    puts "Quality: #{quality}"   # quality is already a String
   end
 end
 ```

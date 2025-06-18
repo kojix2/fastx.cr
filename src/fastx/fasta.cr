@@ -5,7 +5,7 @@ module Fastx
   module Fasta
     # Opens a FASTA file for reading ("r") or writing ("w").
     # Yields the Reader/Writer to the block and automatically closes it.
-    def self.open(filename, mode = "r") # block given
+    def self.open(filename, mode = "r", &) # block given
       case mode
       when "r"
         Reader.open(filename) { |reader| yield reader }

@@ -80,6 +80,60 @@ module Fastx
         file.close if file.is_a?(Compress::Gzip::Reader)
       end
 
+      # Iterates over each FASTQ record, yielding identifier, sequence, and quality as String copies.
+      # This avoids buffer reuse issues when references to sequence/quality data are kept.
+      def each_copy(&)
+        file = @gzip ? Compress::Gzip::Reader.new(@file) : @file
+        return if file.nil?
+
+        identifier = nil
+        sequence = IO::Memory.new
+        quality = IO::Memory.new
+
+        next_field = FIELD::IDENTIFIER
+
+        file.each_line.with_index do |line, idx|
+          case next_field
+          when FIELD::IDENTIFIER
+            unless line.starts_with?("@")
+              raise InvalidFormatError.new(@filename, idx, line, "Identifier line must start with '@'")
+            end
+
+            yield(identifier, sequence.to_s, quality.to_s) unless identifier.nil?
+            # Remove ">" and newline but is it ok on Windows? CR+LF?
+            identifier = line[1..-1]
+            sequence.clear
+            quality.clear
+            next_field = FIELD::SEQUENCE
+          when FIELD::SEQUENCE
+            unless line.ascii_only?
+              raise InvalidCharacterError.new(@filename, identifier, sequence)
+            end
+            sequence << line
+            next_field = FIELD::PLUS
+          when FIELD::PLUS
+            unless line.starts_with?("+")
+              raise InvalidFormatError.new(@filename, idx, line, "Plus line must start with '+'")
+            end
+            next_field = FIELD::QUALITY
+          when FIELD::QUALITY
+            unless line.ascii_only?
+              raise InvalidCharacterError.new(@filename, identifier, sequence)
+            end
+            quality << line
+            next_field = FIELD::IDENTIFIER
+          end
+        end
+
+        unless identifier.nil?
+          yield(identifier, sequence.to_s, quality.to_s) unless identifier.nil?
+          sequence.clear
+          quality.clear
+        end
+
+        file.close if file.is_a?(Compress::Gzip::Reader)
+      end
+
       # Closes the file handle.
       def close
         @file.close

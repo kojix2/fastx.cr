@@ -54,6 +54,34 @@ module Fastx
         file.close if file.is_a?(Compress::Gzip::Reader)
       end
 
+      # Iterates over each FASTA record, yielding name and sequence as String copies.
+      # This avoids buffer reuse issues when references to sequence data are kept.
+      def each_copy(&)
+        file = @gzip ? Compress::Gzip::Reader.new(@file) : @file
+        return if file.nil?
+
+        name = nil
+        sequence = IO::Memory.new
+
+        file.each_line do |line|
+          if line.starts_with?(">")
+            yield name, sequence.to_s unless name.nil?
+            # Remove ">" and newline but is it ok on Windows? CR+LF?
+            name = line[1..-1]
+            sequence.clear
+          else
+            # Check for invalid characters
+            if !line.ascii_only?
+              raise InvalidCharacterError.new(@filename, name, sequence)
+            end
+            sequence << line
+          end
+        end
+        yield name, sequence.to_s unless name.nil?
+
+        file.close if file.is_a?(Compress::Gzip::Reader)
+      end
+
       # Closes the file handle.
       def close
         @file.close

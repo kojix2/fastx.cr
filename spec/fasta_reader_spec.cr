@@ -60,4 +60,46 @@ describe Fastx::Fasta::Reader do
     reader.close
     tempfile.delete
   end
+
+  it "should read a fasta file with each_copy" do
+    reader = Fastx::Fasta::Reader.new(Path[__DIR__, "fixtures/moo.fa"])
+    c = 0
+    reader.each_copy do |name, sequence|
+      name.should eq ["chr1 1", "chr2 2"][c]
+      sequence.size.should eq [1000, 900][c]
+      sequence.should be_a(String)
+      sequence.starts_with?([CHR1_START, CHR2_START][c]).should be_true
+      sequence.ends_with?([CHR1_END, CHR2_END][c]).should be_true
+      c += 1
+    end
+    reader.close
+  end
+
+  it "should open a fasta file with block using each_copy" do
+    Fastx::Fasta::Reader.open(Path[__DIR__, "fixtures/moo.fa"]) do |reader|
+      c = 0
+      reader.each_copy do |name, sequence|
+        name.should eq ["chr1 1", "chr2 2"][c]
+        sequence.size.should eq [1000, 900][c]
+        sequence.should be_a(String)
+        sequence.starts_with?([CHR1_START, CHR2_START][c]).should be_true
+        sequence.ends_with?([CHR1_END, CHR2_END][c]).should be_true
+        c += 1
+      end
+    end
+  end
+
+  it "should raise InvalidCharacterError for non-ASCII characters with each_copy" do
+    tempfile = File.tempfile("invalid.fa")
+    File.write(tempfile.path, ">test\nACGT\u{1F600}ACGT\n")
+
+    reader = Fastx::Fasta::Reader.new(tempfile.path)
+    expect_raises(Fastx::InvalidCharacterError) do
+      reader.each_copy do |name, sequence|
+        # This should raise an exception
+      end
+    end
+    reader.close
+    tempfile.delete
+  end
 end
