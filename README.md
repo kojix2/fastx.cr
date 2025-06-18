@@ -3,9 +3,7 @@
 [![test](https://github.com/kojix2/fastx.cr/actions/workflows/ci.yml/badge.svg)](https://github.com/kojix2/fastx.cr/actions/workflows/ci.yml)
 [![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://kojix2.github.io/fastx.cr/)
 
-I hope that in the future this library will be able to read and write FASTA and FASTQ, but currently it can only read FASTA.
-
-**NOTE:** Currently the standard Crystal library does not open bgzip well; it can only handle gzip files.
+A Crystal library for reading and writing FASTA and FASTQ files.
 
 ## Installation
 
@@ -21,35 +19,131 @@ I hope that in the future this library will be able to read and write FASTA and 
 
 ## Usage
 
-```crystal
-# Create a Reader instance for your FASTA file
-reader = Fastx::Fasta::Reader.new("path_to_your_file.fa")
+### Reading FASTA files
 
-# Go through each sequence in the file
+```crystal
+require "fastx"
+
+# Using Reader directly
+reader = Fastx::Fasta::Reader.new("file.fa")
 reader.each do |name, sequence|
   puts "Name: #{name}"
   puts "Sequence: #{sequence.to_s}"
 end
-
-# Always remember to close the reader
 reader.close
-```
 
-High-level API
-
-```crystal
-Fastx.open("path_to_your_file.fa") do |reader|
-  reader.as(Fastx::Fasta::Reader) # Necessary in the current situation 
-        .each do |name, sequence|
+# Using block (automatically closes)
+Fastx::Fasta::Reader.open("file.fa") do |reader|
+  reader.each do |name, sequence|
     puts "Name: #{name}"
     puts "Sequence: #{sequence.to_s}"
   end
 end
 ```
 
-## Development
+### Reading FASTQ files
 
-This library is in development.
+```crystal
+# Using Reader directly
+reader = Fastx::Fastq::Reader.new("file.fq")
+reader.each do |identifier, sequence, quality|
+  puts "ID: #{identifier}"
+  puts "Sequence: #{sequence.to_s}"
+  puts "Quality: #{quality.to_s}"
+end
+reader.close
+
+# Using block (automatically closes)
+Fastx::Fastq::Reader.open("file.fq") do |reader|
+  reader.each do |identifier, sequence, quality|
+    puts "ID: #{identifier}"
+    puts "Sequence: #{sequence.to_s}"
+    puts "Quality: #{quality.to_s}"
+  end
+end
+```
+
+### Writing FASTA files
+
+```crystal
+# Using Writer directly
+writer = Fastx::Fasta::Writer.new("output.fa")
+writer.write("seq1", "ACGTACGT")
+writer.write("seq2", "TGCATGCA")
+writer.close
+
+# Using block (automatically closes)
+Fastx::Fasta::Writer.open("output.fa") do |writer|
+  writer.write("seq1", "ACGTACGT")
+  writer.write("seq2", "TGCATGCA")
+end
+```
+
+### Writing FASTQ files
+
+```crystal
+# Using Writer directly
+writer = Fastx::Fastq::Writer.new("output.fq")
+writer.write("seq1", "ACGTACGT", "!!!!!!!!")
+writer.write("seq2", "TGCATGCA", "~~~~~~~~")
+writer.close
+
+# Using block (automatically closes)
+Fastx::Fastq::Writer.open("output.fq") do |writer|
+  writer.write("seq1", "ACGTACGT", "!!!!!!!!")
+  writer.write("seq2", "TGCATGCA", "~~~~~~~~")
+end
+```
+
+### Auto-detection by file extension
+
+```crystal
+# Automatically detects format from file extension
+Fastx.open("file.fa") do |reader|
+  reader.as(Fastx::Fasta::Reader).each do |name, sequence|
+    puts "#{name}: #{sequence.to_s}"
+  end
+end
+
+Fastx.open("file.fq") do |reader|
+  reader.as(Fastx::Fastq::Reader).each do |id, sequence, quality|
+    puts "#{id}: #{sequence.to_s}"
+  end
+end
+```
+
+### Explicit format specification
+
+```crystal
+# Using Format enum for explicit format specification
+Fastx.open("data", "r", Fastx::Format::FASTA) do |reader|
+  reader.as(Fastx::Fasta::Reader).each do |name, sequence|
+    puts "#{name}: #{sequence.to_s}"
+  end
+end
+
+Fastx.open("output", "w", Fastx::Format::FASTQ) do |writer|
+  writer.as(Fastx::Fastq::Writer).write("seq1", "ACGT", "!!!!")
+end
+```
+
+### Gzip support
+
+Both reading and writing of gzip-compressed files are supported automatically when the filename ends with `.gz`.
+
+```crystal
+# Reads gzip-compressed FASTA
+Fastx::Fasta::Reader.open("file.fa.gz") do |reader|
+  reader.each do |name, sequence|
+    puts "#{name}: #{sequence.to_s}"
+  end
+end
+
+# Writes gzip-compressed FASTQ
+Fastx::Fastq::Writer.open("output.fq.gz") do |writer|
+  writer.write("seq1", "ACGT", "!!!!")
+end
+```
 
 ## Contributing
 
