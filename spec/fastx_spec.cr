@@ -130,6 +130,27 @@ describe Fastx do
     result.should eq Slice[65u8, 67u8, 71u8, 84u8, 78u8] # ACGTN
   end
 
+  it "should decode bases" do
+    result = Fastx.decode_bases([65u8, 67u8, 71u8, 84u8, 78u8])
+    result.should eq "ACGTN"
+  end
+
+  it "should encode and decode phred scores (default offset 33)" do
+    quality = "IIIIHGF"
+    scores = Fastx.encode_phred(quality)
+    scores.should eq [40, 40, 40, 40, 39, 38, 37]
+    decoded = Fastx.decode_phred(scores)
+    decoded.should eq quality
+  end
+
+  it "should encode and decode phred scores with offset 64" do
+    quality = "dddd"
+    scores = Fastx.encode_phred(quality, offset: 64)
+    scores.should eq [36, 36, 36, 36]
+    decoded = Fastx.decode_phred(scores, offset: 64)
+    decoded.should eq quality
+  end
+
   it "should work with Format enum for FASTQ" do
     tempfile = File.tempfile("test_file")
 

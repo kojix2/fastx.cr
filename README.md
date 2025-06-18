@@ -170,6 +170,26 @@ Convert DNA sequences to UInt8 arrays suitable for byte-wise or array processing
 # Encode bases to UInt8 array (A,C,G,T,N → 65,67,71,84,78; others → 78)
 encoded = Fastx.encode_bases("AcGtNxyz")
 # Returns: Slice[65u8, 67u8, 71u8, 84u8, 78u8, 78u8, 78u8, 78u8]
+
+# Decode UInt8 array back to DNA string
+decoded = Fastx.decode_bases(encoded)
+# Returns: "ACGTNNNN"
+```
+
+### Quality encoding
+
+Convert quality strings to Phred score arrays and back:
+
+```crystal
+# Encode quality string to Phred scores (Phred+33 by default)
+phred_scores = Fastx.encode_phred("IIIIHGF") # => [40, 40, 40, 40, 39, 38, 37]
+
+# Decode Phred scores to quality string
+quality_str = Fastx.decode_phred([40, 40, 40, 40, 39, 38, 37]) # => "IIIIHGF"
+
+# Specify offset for Phred+64
+phred_scores64 = Fastx.encode_phred("dddd", offset: 64)
+quality_str64 = Fastx.decode_phred([36, 36, 36, 36], offset: 64)
 ```
 
 ## Contributing

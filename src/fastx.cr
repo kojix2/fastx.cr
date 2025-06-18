@@ -67,4 +67,9 @@ module Fastx
       normalize_base(c)
     end
   end
+
+  # Converts a UInt8 array (ASCII codes) to a DNA string.
+  def self.decode_bases(bases : Enumerable(UInt8)) : String
+    bases.map(&.chr).join
+  end
 end
