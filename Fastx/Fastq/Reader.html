@@ -178,7 +178,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/reader.cr#L6" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/reader.cr#L6" target="_blank">
         fastx/fastq/reader.cr
       </a>
     
@@ -203,6 +203,8 @@
       <li class="entry-summary">
         <a href="#new%28filename%3AString%7CPath%29-class-method" class="signature"><strong>.new</strong>(filename : String | Path)</a>
         
+          <div class="summary"><p>Creates a new FASTQ reader for the specified file.</p></div>
+        
       </li>
     
   </ul>
@@ -221,6 +223,8 @@
     
       <li class="entry-summary">
         <a href="#open%28filename%3AString%7CPath%2C%26%29-class-method" class="signature"><strong>.open</strong>(filename : String | Path, &)</a>
+        
+          <div class="summary"><p>Opens a FASTQ file, yields the reader to the block, and automatically closes it.</p></div>
         
       </li>
     
@@ -243,15 +247,21 @@
       <li class="entry-summary">
         <a href="#close-instance-method" class="signature"><strong>#close</strong></a>
         
+          <div class="summary"><p>Closes the file handle.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#closed%3F-instance-method" class="signature"><strong>#closed?</strong></a>
         
+          <div class="summary"><p>Returns true if the file handle is closed.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#each%28%26%29-instance-method" class="signature"><strong>#each</strong>(&)</a>
+        
+          <div class="summary"><p>Iterates over each FASTQ record, yielding identifier, sequence, and quality.</p></div>
         
       </li>
     
@@ -307,10 +317,16 @@
         <a class="method-permalink" href="#new%28filename%3AString%7CPath%29-class-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Creates a new FASTQ reader for the specified file.
+Automatically detects gzip compression from .gz extension.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/reader.cr#L18" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/reader.cr#L21" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -335,10 +351,15 @@
         <a class="method-permalink" href="#open%28filename%3AString%7CPath%2C%26%29-class-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Opens a FASTQ file, yields the reader to the block, and automatically closes it.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/reader.cr#L11" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/reader.cr#L12" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -365,10 +386,15 @@
         <a class="method-permalink" href="#close-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Closes the file handle.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/reader.cr#L79" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/reader.cr#L84" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -381,10 +407,15 @@
         <a class="method-permalink" href="#closed%3F-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Returns true if the file handle is closed.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/reader.cr#L83" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/reader.cr#L89" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -397,10 +428,15 @@
         <a class="method-permalink" href="#each%28%26%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Iterates over each FASTQ record, yielding identifier, sequence, and quality.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/reader.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/reader.cr#L28" target="_blank">View source</a>]
         
       </div>
     </div>

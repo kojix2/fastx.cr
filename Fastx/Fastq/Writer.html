@@ -178,7 +178,7 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/writer.cr#L6" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/writer.cr#L6" target="_blank">
         fastx/fastq/writer.cr
       </a>
     
@@ -203,6 +203,8 @@
       <li class="entry-summary">
         <a href="#new%28filename%3AString%7CPath%29-class-method" class="signature"><strong>.new</strong>(filename : String | Path)</a>
         
+          <div class="summary"><p>Creates a new FASTQ writer for the specified file.</p></div>
+        
       </li>
     
   </ul>
@@ -221,6 +223,8 @@
     
       <li class="entry-summary">
         <a href="#open%28filename%3AString%7CPath%2C%26%29-class-method" class="signature"><strong>.open</strong>(filename : String | Path, &)</a>
+        
+          <div class="summary"><p>Opens a FASTQ file for writing, yields the writer to the block, and automatically closes it.</p></div>
         
       </li>
     
@@ -243,15 +247,21 @@
       <li class="entry-summary">
         <a href="#close-instance-method" class="signature"><strong>#close</strong></a>
         
+          <div class="summary"><p>Closes the file handle.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#closed%3F-instance-method" class="signature"><strong>#closed?</strong></a>
         
+          <div class="summary"><p>Returns true if the file handle is closed.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#write%28identifier%3AString%2Csequence%3AString%2Cquality%3AString%29-instance-method" class="signature"><strong>#write</strong>(identifier : String, sequence : String, quality : String)</a>
+        
+          <div class="summary"><p>Writes a FASTQ record with the given identifier, sequence, and quality.</p></div>
         
       </li>
     
@@ -307,10 +317,16 @@
         <a class="method-permalink" href="#new%28filename%3AString%7CPath%29-class-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Creates a new FASTQ writer for the specified file.
+Automatically detects gzip compression from .gz extension.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/writer.cr#L19" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/writer.cr#L22" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -335,10 +351,15 @@
         <a class="method-permalink" href="#open%28filename%3AString%7CPath%2C%26%29-class-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Opens a FASTQ file for writing, yields the writer to the block, and automatically closes it.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/writer.cr#L12" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/writer.cr#L13" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -365,10 +386,15 @@
         <a class="method-permalink" href="#close-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Closes the file handle.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/writer.cr#L33" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/writer.cr#L38" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -381,10 +407,15 @@
         <a class="method-permalink" href="#closed%3F-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Returns true if the file handle is closed.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/writer.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/writer.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -397,10 +428,15 @@
         <a class="method-permalink" href="#write%28identifier%3AString%2Csequence%3AString%2Cquality%3AString%29-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Writes a FASTQ record with the given identifier, sequence, and quality.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/writer.cr#L26" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/writer.cr#L30" target="_blank">View source</a>]
         
       </div>
     </div>

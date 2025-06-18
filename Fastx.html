@@ -176,70 +176,70 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx.cr#L6" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx.cr#L6" target="_blank">
         fastx.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/exceptions.cr#L1" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/exceptions.cr#L1" target="_blank">
         fastx/exceptions.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fasta.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fasta.cr#L4" target="_blank">
         fastx/fasta.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fasta/reader.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fasta/reader.cr#L4" target="_blank">
         fastx/fasta/reader.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fasta/writer.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fasta/writer.cr#L4" target="_blank">
         fastx/fasta/writer.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq.cr#L4" target="_blank">
         fastx/fastq.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/reader.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/reader.cr#L4" target="_blank">
         fastx/fastq/reader.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/writer.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/fastq/writer.cr#L4" target="_blank">
         fastx/fastq/writer.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/format.cr#L1" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/format.cr#L1" target="_blank">
         fastx/format.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/version.cr#L1" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx/version.cr#L1" target="_blank">
         fastx/version.cr
       </a>
     
@@ -283,27 +283,30 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
+        <a href="#encode_bases%28sequence%3AIO%3A%3AMemory%7CString%29%3ASlice%28UInt8%29-class-method" class="signature"><strong>.encode_bases</strong>(sequence : IO::Memory | String) : Slice(UInt8)</a>
+        
+          <div class="summary"><p>Converts a DNA sequence (String or IO::Memory) to a UInt8 slice, where each base is encoded as a single byte (A, C, G, T, N → 65, 67, 71, 84, 78; others → 78).</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#normalize_base%28c%3AUInt8%29%3AUInt8-class-method" class="signature"><strong>.normalize_base</strong>(c : UInt8) : UInt8</a>
         
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#normalize_sequence%28sequence%3AIO%3A%3AMemory%7CString%29%3ASlice%28UInt8%29-class-method" class="signature"><strong>.normalize_sequence</strong>(sequence : IO::Memory | String) : Slice(UInt8)</a>
-        
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#normalize_sequence%28sequence%3AIO%3A%3AMemory%7CString%2C%26%29%3ASlice-class-method" class="signature"><strong>.normalize_sequence</strong>(sequence : IO::Memory | String, &) : Slice</a>
+          <div class="summary"><p>Normalizes a single base character to uppercase ACGTN.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cformat%3AFormat%7CNil%3Dnil%2C%26%29-class-method" class="signature"><strong>.open</strong>(filename : Path | String, mode = <span class="s">&quot;r&quot;</span>, format : Format | Nil = <span class="n">nil</span>, &)</a>
         
+          <div class="summary"><p>Opens a FASTA/FASTQ file with automatic format detection or explicit format.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cformat%3AFormat%7CNil%3Dnil%29-class-method" class="signature"><strong>.open</strong>(filename : Path | String, mode = <span class="s">&quot;r&quot;</span>, format : Format | Nil = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>Opens a FASTA/FASTQ file with automatic format detection or explicit format.</p></div>
         
       </li>
     
@@ -331,6 +334,29 @@
     Class Method Detail
   </h2>
   
+    <div class="entry-detail" id="encode_bases(sequence:IO::Memory|String):Slice(UInt8)-class-method">
+      <div class="signature">
+        
+        def self.<strong>encode_bases</strong>(sequence : IO::Memory | String) : Slice(UInt8)
+
+        <a class="method-permalink" href="#encode_bases%28sequence%3AIO%3A%3AMemory%7CString%29%3ASlice%28UInt8%29-class-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Converts a DNA sequence (String or IO::Memory) to a UInt8 slice,
+where each base is encoded as a single byte (A, C, G, T, N → 65, 67, 71, 84, 78; others → 78).
+This representation is suitable for SIMD or byte-wise processing.</p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx.cr#L65" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
     <div class="entry-detail" id="normalize_base(c:UInt8):UInt8-class-method">
       <div class="signature">
         
@@ -339,42 +365,16 @@
         <a class="method-permalink" href="#normalize_base%28c%3AUInt8%29%3AUInt8-class-method">#</a>
       </div>
       
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx.cr#L46" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="normalize_sequence(sequence:IO::Memory|String):Slice(UInt8)-class-method">
-      <div class="signature">
-        
-        def self.<strong>normalize_sequence</strong>(sequence : IO::Memory | String) : Slice(UInt8)
-
-        <a class="method-permalink" href="#normalize_sequence%28sequence%3AIO%3A%3AMemory%7CString%29%3ASlice%28UInt8%29-class-method">#</a>
-      </div>
+        <div class="doc">
+          
+          <p>Normalizes a single base character to uppercase ACGTN.
+Non-ACGTN characters are converted to N (78u8).</p>
+        </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx.cr#L61" target="_blank">View source</a>]
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="normalize_sequence(sequence:IO::Memory|String,&amp;):Slice-class-method">
-      <div class="signature">
-        
-        def self.<strong>normalize_sequence</strong>(sequence : IO::Memory | String, &) : Slice
-
-        <a class="method-permalink" href="#normalize_sequence%28sequence%3AIO%3A%3AMemory%7CString%2C%26%29%3ASlice-class-method">#</a>
-      </div>
-      
-      <br/>
-      <div>
-        
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx.cr#L69" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx.cr#L49" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -387,10 +387,16 @@
         <a class="method-permalink" href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cformat%3AFormat%7CNil%3Dnil%2C%26%29-class-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Opens a FASTA/FASTQ file with automatic format detection or explicit format.
+Yields the appropriate Reader/Writer to the block and automatically closes it.</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx.cr#L7" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -403,10 +409,16 @@
         <a class="method-permalink" href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cformat%3AFormat%7CNil%3Dnil%29-class-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Opens a FASTA/FASTQ file with automatic format detection or explicit format.
+Returns the appropriate Reader/Writer instance (manual close required).</p>
+        </div>
+      
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx.cr#L25" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/2c699664eea3272ab7fa2c2d604dc50e0cfa420f/src/fastx.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
