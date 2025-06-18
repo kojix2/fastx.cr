@@ -1,13 +1,14 @@
 require "./fastx/version"
+require "./fastx/format"
 require "./fastx/fasta"
 require "./fastx/fastq"
 
 module Fastx
-  def self.open(filename : Path | String, mode = "r", format = nil, &) # block given
+  def self.open(filename : Path | String, mode = "r", format : Format? = nil, &) # block given
     case format
-    when "fastq"
+    when Format::FASTQ
       Fastq.open(filename, mode) { |f| yield f }
-    when "fasta"
+    when Format::FASTA
       Fasta.open(filename, mode) { |f| yield f }
     else
       case filename.to_s
@@ -21,11 +22,11 @@ module Fastx
     end
   end
 
-  def self.open(filename : Path | String, mode = "r", format = nil)
+  def self.open(filename : Path | String, mode = "r", format : Format? = nil)
     case format
-    when "fastq"
+    when Format::FASTQ
       Fastq.open(filename, mode)
-    when "fasta"
+    when Format::FASTA
       Fasta.open(filename, mode)
     else
       case filename.to_s

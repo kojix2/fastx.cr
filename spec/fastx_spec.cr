@@ -90,12 +90,12 @@ describe Fastx do
     tempfile = File.tempfile("test_file")
 
     # Write as FASTA using format parameter
-    Fastx.open(tempfile.path, "w", "fasta") do |writer|
+    Fastx.open(tempfile.path, "w", Fastx::Format::FASTA) do |writer|
       writer.as(Fastx::Fasta::Writer).write("test", "ACGT")
     end
 
     # Read as FASTA using format parameter
-    Fastx.open(tempfile.path, "r", "fasta") do |reader|
+    Fastx.open(tempfile.path, "r", Fastx::Format::FASTA) do |reader|
       reader.as(Fastx::Fasta::Reader).each do |name, sequence|
         name.should eq "test"
         sequence.to_s.should eq "ACGT"
@@ -128,5 +128,25 @@ describe Fastx do
   it "should normalize sequence" do
     result = Fastx.normalize_sequence("AcGtN")
     result.should eq Slice[65u8, 67u8, 71u8, 84u8, 78u8] # ACGTN
+  end
+
+  it "should work with Format enum for FASTQ" do
+    tempfile = File.tempfile("test_file")
+
+    # Write as FASTQ using format parameter
+    Fastx.open(tempfile.path, "w", Fastx::Format::FASTQ) do |writer|
+      writer.as(Fastx::Fastq::Writer).write("test", "ACGT", "!!!!")
+    end
+
+    # Read as FASTQ using format parameter
+    Fastx.open(tempfile.path, "r", Fastx::Format::FASTQ) do |reader|
+      reader.as(Fastx::Fastq::Reader).each do |id, sequence, quality|
+        id.should eq "test"
+        sequence.to_s.should eq "ACGT"
+        quality.to_s.should eq "!!!!"
+      end
+    end
+
+    tempfile.delete
   end
 end
