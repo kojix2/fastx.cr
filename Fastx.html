@@ -112,6 +112,11 @@
       
     </li>
   
+  <li class=" " data-id="fastx/Fastx/Format" data-name="fastx::format">
+      <a href="Fastx/Format.html">Format</a>
+      
+    </li>
+  
   <li class=" " data-id="fastx/Fastx/InvalidCharacterError" data-name="fastx::invalidcharactererror">
       <a href="Fastx/InvalidCharacterError.html">InvalidCharacterError</a>
       
@@ -171,63 +176,70 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx.cr#L5" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx.cr#L6" target="_blank">
         fastx.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx/exceptions.cr#L1" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/exceptions.cr#L1" target="_blank">
         fastx/exceptions.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx/fasta.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fasta.cr#L4" target="_blank">
         fastx/fasta.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx/fasta/reader.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fasta/reader.cr#L4" target="_blank">
         fastx/fasta/reader.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx/fasta/writer.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fasta/writer.cr#L4" target="_blank">
         fastx/fasta/writer.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx/fastq.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq.cr#L4" target="_blank">
         fastx/fastq.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx/fastq/reader.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/reader.cr#L4" target="_blank">
         fastx/fastq/reader.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx/fastq/writer.cr#L4" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/fastq/writer.cr#L4" target="_blank">
         fastx/fastq/writer.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx/version.cr#L1" target="_blank">
+      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/format.cr#L1" target="_blank">
+        fastx/format.cr
+      </a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/version.cr#L1" target="_blank">
         fastx/version.cr
       </a>
     
@@ -286,12 +298,12 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cformat%3Dnil%2C%26%29-class-method" class="signature"><strong>.open</strong>(filename : Path | String, mode = <span class="s">&quot;r&quot;</span>, format = <span class="n">nil</span>, &)</a>
+        <a href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cformat%3AFormat%7CNil%3Dnil%2C%26%29-class-method" class="signature"><strong>.open</strong>(filename : Path | String, mode = <span class="s">&quot;r&quot;</span>, format : Format | Nil = <span class="n">nil</span>, &)</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cformat%3Dnil%29-class-method" class="signature"><strong>.open</strong>(filename : Path | String, mode = <span class="s">&quot;r&quot;</span>, format = <span class="n">nil</span>)</a>
+        <a href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cformat%3AFormat%7CNil%3Dnil%29-class-method" class="signature"><strong>.open</strong>(filename : Path | String, mode = <span class="s">&quot;r&quot;</span>, format : Format | Nil = <span class="n">nil</span>)</a>
         
       </li>
     
@@ -330,7 +342,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx.cr#L45" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx.cr#L46" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -346,7 +358,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx.cr#L60" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx.cr#L61" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -362,39 +374,39 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx.cr#L68" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx.cr#L69" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="open(filename:Path|String,mode=&quot;r&quot;,format=nil,&amp;)-class-method">
+    <div class="entry-detail" id="open(filename:Path|String,mode=&quot;r&quot;,format:Format|Nil=nil,&amp;)-class-method">
       <div class="signature">
         
-        def self.<strong>open</strong>(filename : Path | String, mode = <span class="s">&quot;r&quot;</span>, format = <span class="n">nil</span>, &)
+        def self.<strong>open</strong>(filename : Path | String, mode = <span class="s">&quot;r&quot;</span>, format : <a href="Fastx/Format.html">Format</a> | Nil = <span class="n">nil</span>, &)
 
-        <a class="method-permalink" href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cformat%3Dnil%2C%26%29-class-method">#</a>
+        <a class="method-permalink" href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cformat%3AFormat%7CNil%3Dnil%2C%26%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx.cr#L6" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx.cr#L7" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="open(filename:Path|String,mode=&quot;r&quot;,format=nil)-class-method">
+    <div class="entry-detail" id="open(filename:Path|String,mode=&quot;r&quot;,format:Format|Nil=nil)-class-method">
       <div class="signature">
         
-        def self.<strong>open</strong>(filename : Path | String, mode = <span class="s">&quot;r&quot;</span>, format = <span class="n">nil</span>)
+        def self.<strong>open</strong>(filename : Path | String, mode = <span class="s">&quot;r&quot;</span>, format : <a href="Fastx/Format.html">Format</a> | Nil = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cformat%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#open%28filename%3APath%7CString%2Cmode%3D%22r%22%2Cformat%3AFormat%7CNil%3Dnil%29-class-method">#</a>
       </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/kojix2/fastx.cr/blob/8cfebe2fcf982122fe9a419026586587a9979a2a/src/fastx.cr#L24" target="_blank">View source</a>]
+          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx.cr#L25" target="_blank">View source</a>]
         
       </div>
     </div>

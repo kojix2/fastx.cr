@@ -112,6 +112,11 @@
       
     </li>
   
+  <li class=" " data-id="fastx/Fastx/Format" data-name="fastx::format">
+      <a href="Fastx/Format.html">Format</a>
+      
+    </li>
+  
   <li class=" " data-id="fastx/Fastx/InvalidCharacterError" data-name="fastx::invalidcharactererror">
       <a href="Fastx/InvalidCharacterError.html">InvalidCharacterError</a>
       
@@ -140,8 +145,7 @@
 </a>Fastx.cr</h1>
 <p><a href="https://github.com/kojix2/fastx.cr/actions/workflows/ci.yml"><img src="https://github.com/kojix2/fastx.cr/actions/workflows/ci.yml/badge.svg" alt="test" /></a>
 <a href="https://kojix2.github.io/fastx.cr/"><img src="https://img.shields.io/badge/docs-latest-blue.svg" alt="Docs Latest" /></a></p>
-<p>I hope that in the future this library will be able to read and write FASTA and FASTQ, but currently it can only read FASTA.</p>
-<p><strong>NOTE:</strong> Currently the standard Crystal library does not open bgzip well; it can only handle gzip files.</p>
+<p>A Crystal library for reading and writing FASTA and FASTQ files.</p>
 <h2><a id="installation" class="anchor" href="#installation">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -163,31 +167,131 @@
     <use href="#octicon-link"/>
   </svg>
 </a>Usage</h2>
-<pre><code class="language-crystal"><span class="c"># Create a Reader instance for your FASTA file</span>
-reader <span class="o">=</span> <span class="t">Fastx</span><span class="t">::</span><span class="t">Fasta</span><span class="t">::</span><span class="t">Reader</span>.new(<span class="s">&quot;path_to_your_file.fa&quot;</span>)
+<h3><a id="reading-fasta-files" class="anchor" href="#reading-fasta-files">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Reading FASTA files</h3>
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;fastx&quot;</span>
 
-<span class="c"># Go through each sequence in the file</span>
+<span class="c"># Using Reader directly</span>
+reader <span class="o">=</span> <span class="t">Fastx</span><span class="t">::</span><span class="t">Fasta</span><span class="t">::</span><span class="t">Reader</span>.new(<span class="s">&quot;file.fa&quot;</span>)
 reader.each <span class="k">do</span> <span class="o">|</span>name, sequence<span class="o">|</span>
   puts <span class="s">&quot;Name: </span><span class="i">#{</span>name<span class="i">}</span><span class="s">&quot;</span>
   puts <span class="s">&quot;Sequence: </span><span class="i">#{</span>sequence.to_s<span class="i">}</span><span class="s">&quot;</span>
 <span class="k">end</span>
+reader.close
 
-<span class="c"># Always remember to close the reader</span>
-reader.close</code></pre>
-<p>High-level API</p>
-<pre><code class="language-crystal"><span class="t">Fastx</span>.open(<span class="s">&quot;path_to_your_file.fa&quot;</span>) <span class="k">do</span> <span class="o">|</span>reader<span class="o">|</span>
-  reader.<span class="k">as</span>(<span class="t">Fastx</span><span class="t">::</span><span class="t">Fasta</span><span class="t">::</span><span class="t">Reader</span>) <span class="c"># Necessary in the current situation </span>
-        .each <span class="k">do</span> <span class="o">|</span>name, sequence<span class="o">|</span>
+<span class="c"># Using block (automatically closes)</span>
+<span class="t">Fastx</span><span class="t">::</span><span class="t">Fasta</span><span class="t">::</span><span class="t">Reader</span>.open(<span class="s">&quot;file.fa&quot;</span>) <span class="k">do</span> <span class="o">|</span>reader<span class="o">|</span>
+  reader.each <span class="k">do</span> <span class="o">|</span>name, sequence<span class="o">|</span>
     puts <span class="s">&quot;Name: </span><span class="i">#{</span>name<span class="i">}</span><span class="s">&quot;</span>
     puts <span class="s">&quot;Sequence: </span><span class="i">#{</span>sequence.to_s<span class="i">}</span><span class="s">&quot;</span>
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
-<h2><a id="development" class="anchor" href="#development">
+<h3><a id="reading-fastq-files" class="anchor" href="#reading-fastq-files">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Development</h2>
-<p>This library is in development.</p>
+</a>Reading FASTQ files</h3>
+<pre><code class="language-crystal"><span class="c"># Using Reader directly</span>
+reader <span class="o">=</span> <span class="t">Fastx</span><span class="t">::</span><span class="t">Fastq</span><span class="t">::</span><span class="t">Reader</span>.new(<span class="s">&quot;file.fq&quot;</span>)
+reader.each <span class="k">do</span> <span class="o">|</span>identifier, sequence, quality<span class="o">|</span>
+  puts <span class="s">&quot;ID: </span><span class="i">#{</span>identifier<span class="i">}</span><span class="s">&quot;</span>
+  puts <span class="s">&quot;Sequence: </span><span class="i">#{</span>sequence.to_s<span class="i">}</span><span class="s">&quot;</span>
+  puts <span class="s">&quot;Quality: </span><span class="i">#{</span>quality.to_s<span class="i">}</span><span class="s">&quot;</span>
+<span class="k">end</span>
+reader.close
+
+<span class="c"># Using block (automatically closes)</span>
+<span class="t">Fastx</span><span class="t">::</span><span class="t">Fastq</span><span class="t">::</span><span class="t">Reader</span>.open(<span class="s">&quot;file.fq&quot;</span>) <span class="k">do</span> <span class="o">|</span>reader<span class="o">|</span>
+  reader.each <span class="k">do</span> <span class="o">|</span>identifier, sequence, quality<span class="o">|</span>
+    puts <span class="s">&quot;ID: </span><span class="i">#{</span>identifier<span class="i">}</span><span class="s">&quot;</span>
+    puts <span class="s">&quot;Sequence: </span><span class="i">#{</span>sequence.to_s<span class="i">}</span><span class="s">&quot;</span>
+    puts <span class="s">&quot;Quality: </span><span class="i">#{</span>quality.to_s<span class="i">}</span><span class="s">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<h3><a id="writing-fasta-files" class="anchor" href="#writing-fasta-files">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Writing FASTA files</h3>
+<pre><code class="language-crystal"><span class="c"># Using Writer directly</span>
+writer <span class="o">=</span> <span class="t">Fastx</span><span class="t">::</span><span class="t">Fasta</span><span class="t">::</span><span class="t">Writer</span>.new(<span class="s">&quot;output.fa&quot;</span>)
+writer.write(<span class="s">&quot;seq1&quot;</span>, <span class="s">&quot;ACGTACGT&quot;</span>)
+writer.write(<span class="s">&quot;seq2&quot;</span>, <span class="s">&quot;TGCATGCA&quot;</span>)
+writer.close
+
+<span class="c"># Using block (automatically closes)</span>
+<span class="t">Fastx</span><span class="t">::</span><span class="t">Fasta</span><span class="t">::</span><span class="t">Writer</span>.open(<span class="s">&quot;output.fa&quot;</span>) <span class="k">do</span> <span class="o">|</span>writer<span class="o">|</span>
+  writer.write(<span class="s">&quot;seq1&quot;</span>, <span class="s">&quot;ACGTACGT&quot;</span>)
+  writer.write(<span class="s">&quot;seq2&quot;</span>, <span class="s">&quot;TGCATGCA&quot;</span>)
+<span class="k">end</span></code></pre>
+<h3><a id="writing-fastq-files" class="anchor" href="#writing-fastq-files">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Writing FASTQ files</h3>
+<pre><code class="language-crystal"><span class="c"># Using Writer directly</span>
+writer <span class="o">=</span> <span class="t">Fastx</span><span class="t">::</span><span class="t">Fastq</span><span class="t">::</span><span class="t">Writer</span>.new(<span class="s">&quot;output.fq&quot;</span>)
+writer.write(<span class="s">&quot;seq1&quot;</span>, <span class="s">&quot;ACGTACGT&quot;</span>, <span class="s">&quot;!!!!!!!!&quot;</span>)
+writer.write(<span class="s">&quot;seq2&quot;</span>, <span class="s">&quot;TGCATGCA&quot;</span>, <span class="s">&quot;~~~~~~~~&quot;</span>)
+writer.close
+
+<span class="c"># Using block (automatically closes)</span>
+<span class="t">Fastx</span><span class="t">::</span><span class="t">Fastq</span><span class="t">::</span><span class="t">Writer</span>.open(<span class="s">&quot;output.fq&quot;</span>) <span class="k">do</span> <span class="o">|</span>writer<span class="o">|</span>
+  writer.write(<span class="s">&quot;seq1&quot;</span>, <span class="s">&quot;ACGTACGT&quot;</span>, <span class="s">&quot;!!!!!!!!&quot;</span>)
+  writer.write(<span class="s">&quot;seq2&quot;</span>, <span class="s">&quot;TGCATGCA&quot;</span>, <span class="s">&quot;~~~~~~~~&quot;</span>)
+<span class="k">end</span></code></pre>
+<h3><a id="auto-detection-by-file-extension" class="anchor" href="#auto-detection-by-file-extension">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Auto-detection by file extension</h3>
+<pre><code class="language-crystal"><span class="c"># Automatically detects format from file extension</span>
+<span class="t">Fastx</span>.open(<span class="s">&quot;file.fa&quot;</span>) <span class="k">do</span> <span class="o">|</span>reader<span class="o">|</span>
+  reader.<span class="k">as</span>(<span class="t">Fastx</span><span class="t">::</span><span class="t">Fasta</span><span class="t">::</span><span class="t">Reader</span>).each <span class="k">do</span> <span class="o">|</span>name, sequence<span class="o">|</span>
+    puts <span class="s">&quot;</span><span class="i">#{</span>name<span class="i">}</span><span class="s">: </span><span class="i">#{</span>sequence.to_s<span class="i">}</span><span class="s">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Fastx</span>.open(<span class="s">&quot;file.fq&quot;</span>) <span class="k">do</span> <span class="o">|</span>reader<span class="o">|</span>
+  reader.<span class="k">as</span>(<span class="t">Fastx</span><span class="t">::</span><span class="t">Fastq</span><span class="t">::</span><span class="t">Reader</span>).each <span class="k">do</span> <span class="o">|</span>id, sequence, quality<span class="o">|</span>
+    puts <span class="s">&quot;</span><span class="i">#{</span>id<span class="i">}</span><span class="s">: </span><span class="i">#{</span>sequence.to_s<span class="i">}</span><span class="s">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre>
+<h3><a id="explicit-format-specification" class="anchor" href="#explicit-format-specification">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Explicit format specification</h3>
+<pre><code class="language-crystal"><span class="c"># Using Format enum for explicit format specification</span>
+<span class="t">Fastx</span>.open(<span class="s">&quot;data&quot;</span>, <span class="s">&quot;r&quot;</span>, <span class="t">Fastx</span><span class="t">::</span><span class="t">Format</span><span class="t">::</span><span class="t">FASTA</span>) <span class="k">do</span> <span class="o">|</span>reader<span class="o">|</span>
+  reader.<span class="k">as</span>(<span class="t">Fastx</span><span class="t">::</span><span class="t">Fasta</span><span class="t">::</span><span class="t">Reader</span>).each <span class="k">do</span> <span class="o">|</span>name, sequence<span class="o">|</span>
+    puts <span class="s">&quot;</span><span class="i">#{</span>name<span class="i">}</span><span class="s">: </span><span class="i">#{</span>sequence.to_s<span class="i">}</span><span class="s">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="t">Fastx</span>.open(<span class="s">&quot;output&quot;</span>, <span class="s">&quot;w&quot;</span>, <span class="t">Fastx</span><span class="t">::</span><span class="t">Format</span><span class="t">::</span><span class="t">FASTQ</span>) <span class="k">do</span> <span class="o">|</span>writer<span class="o">|</span>
+  writer.<span class="k">as</span>(<span class="t">Fastx</span><span class="t">::</span><span class="t">Fastq</span><span class="t">::</span><span class="t">Writer</span>).write(<span class="s">&quot;seq1&quot;</span>, <span class="s">&quot;ACGT&quot;</span>, <span class="s">&quot;!!!!&quot;</span>)
+<span class="k">end</span></code></pre>
+<h3><a id="gzip-support" class="anchor" href="#gzip-support">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Gzip support</h3>
+<p>Both reading and writing of gzip-compressed files are supported automatically when the filename ends with <code>.gz</code>.</p>
+<pre><code class="language-crystal"><span class="c"># Reads gzip-compressed FASTA</span>
+<span class="t">Fastx</span><span class="t">::</span><span class="t">Fasta</span><span class="t">::</span><span class="t">Reader</span>.open(<span class="s">&quot;file.fa.gz&quot;</span>) <span class="k">do</span> <span class="o">|</span>reader<span class="o">|</span>
+  reader.each <span class="k">do</span> <span class="o">|</span>name, sequence<span class="o">|</span>
+    puts <span class="s">&quot;</span><span class="i">#{</span>name<span class="i">}</span><span class="s">: </span><span class="i">#{</span>sequence.to_s<span class="i">}</span><span class="s">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Writes gzip-compressed FASTQ</span>
+<span class="t">Fastx</span><span class="t">::</span><span class="t">Fastq</span><span class="t">::</span><span class="t">Writer</span>.open(<span class="s">&quot;output.fq.gz&quot;</span>) <span class="k">do</span> <span class="o">|</span>writer<span class="o">|</span>
+  writer.write(<span class="s">&quot;seq1&quot;</span>, <span class="s">&quot;ACGT&quot;</span>, <span class="s">&quot;!!!!&quot;</span>)
+<span class="k">end</span></code></pre>
 <h2><a id="contributing" class="anchor" href="#contributing">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>

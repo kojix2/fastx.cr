@@ -14,7 +14,7 @@
 <script type="text/javascript" src="../js/doc.js"></script>
 
   <meta name="repository-name" content="fastx">
-  <title>Fastx::FastxError - fastx main</title>
+  <title>Fastx::Format - fastx main</title>
   <script type="text/javascript">
     CrystalDocs.base_path = "../";
   </script>
@@ -107,12 +107,12 @@
       
     </li>
   
-  <li class=" current" data-id="fastx/Fastx/FastxError" data-name="fastx::fastxerror">
+  <li class=" " data-id="fastx/Fastx/FastxError" data-name="fastx::fastxerror">
       <a href="../Fastx/FastxError.html">FastxError</a>
       
     </li>
   
-  <li class=" " data-id="fastx/Fastx/Format" data-name="fastx::format">
+  <li class=" current" data-id="fastx/Fastx/Format" data-name="fastx::format">
       <a href="../Fastx/Format.html">Format</a>
       
     </li>
@@ -142,13 +142,12 @@
 <h1 class="type-name">
 
   <span class="kind">
-    class
-  </span> Fastx::<wbr>FastxError
+    enum
+  </span> Fastx::<wbr>Format
 
 </h1>
 
 
-  <ul class="superclass-hierarchy"><li class="superclass"><a href="../Fastx/FastxError.html">Fastx::FastxError</a></li><li class="superclass">Exception</li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
 
 
 
@@ -161,23 +160,6 @@
 
 
 
-
-
-  <h2>
-    <a id="direct-known-subclasses" class="anchor" href="#direct-known-subclasses">
-  <svg class="octicon-link" aria-hidden="true">
-    <use href="#octicon-link"/>
-  </svg>
-</a>
-    Direct Known Subclasses
-  </h2>
-  <ul class="other-types-list">
-    
-      <li class="other-type"><a href="../Fastx/InvalidCharacterError.html">Fastx::InvalidCharacterError</a></li>
-    
-      <li class="other-type"><a href="../Fastx/InvalidFormatError.html">Fastx::InvalidFormatError</a></li>
-    
-  </ul>
 
 
 
@@ -194,8 +176,8 @@
   </h2>
   
     
-      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/exceptions.cr#L2" target="_blank">
-        fastx/exceptions.cr
+      <a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/format.cr#L2" target="_blank">
+        fastx/format.cr
       </a>
     
     <br/>
@@ -203,6 +185,30 @@
 
 
 
+  
+    <h2>
+      <a id="enum-members" class="anchor" href="#enum-members">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Enum Members
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="FASTA">
+        <strong>FASTA</strong> = <code><span class="n">0</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="FASTQ">
+        <strong>FASTQ</strong> = <code><span class="n">1</span></code>
+      </dt>
+      
+    
+  </dl>
+
 
 
   
@@ -212,6 +218,32 @@
   
 
   
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#fasta%3F-instance-method" class="signature"><strong>#fasta?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../Fastx/Format.html#FASTA">FASTA</a></code></p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#fastq%3F-instance-method" class="signature"><strong>#fastq?</strong></a>
+        
+          <div class="summary"><p>Returns <code>true</code> if this enum value equals <code><a href="../Fastx/Format.html#FASTQ">FASTQ</a></code></p></div>
+        
+      </li>
+    
+  </ul>
+
 
 
   <div class="methods-inherited">
@@ -255,6 +287,19 @@
 
 
     
+      
+
+
+      
+
+
+      
+
+
+      
+
+
+    
   </div>
 
   
@@ -264,6 +309,58 @@
   
 
   
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="fasta?-instance-method">
+      <div class="signature">
+        
+        def <strong>fasta?</strong>
+
+        <a class="method-permalink" href="#fasta%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../Fastx/Format.html#FASTA">FASTA</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/format.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="fastq?-instance-method">
+      <div class="signature">
+        
+        def <strong>fastq?</strong>
+
+        <a class="method-permalink" href="#fastq%3F-instance-method">#</a>
+      </div>
+      
+        <div class="doc">
+          
+          <p>Returns <code>true</code> if this enum value equals <code><a href="../Fastx/Format.html#FASTQ">FASTQ</a></code></p>
+        </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/kojix2/fastx.cr/blob/e901c3967fecb1e0a762157c64401d2f8d722f3f/src/fastx/format.cr#L4" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
 
 
 </div>
