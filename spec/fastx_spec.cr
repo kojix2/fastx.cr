@@ -125,8 +125,8 @@ describe Fastx do
     Fastx.normalize_base(88u8).should eq 78u8  # X -> N (unknown)
   end
 
-  it "should normalize sequence" do
-    result = Fastx.normalize_sequence("AcGtN")
+  it "should encode bases" do
+    result = Fastx.encode_bases("AcGtN")
     result.should eq Slice[65u8, 67u8, 71u8, 84u8, 78u8] # ACGTN
   end
 

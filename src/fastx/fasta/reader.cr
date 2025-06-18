@@ -8,6 +8,7 @@ module Fastx
       @gzip : Bool
       @file : File
 
+      # Opens a FASTA file, yields the reader to the block, and automatically closes it.
       def self.open(filename : String | Path, &)
         reader = self.new(filename)
         yield reader
@@ -15,12 +16,15 @@ module Fastx
         reader.try &.close
       end
 
+      # Creates a new FASTA reader for the specified file.
+      # Automatically detects gzip compression from .gz extension.
       def initialize(filename : String | Path)
         @filename = Path.new(filename)
         @gzip = @filename.extension == ".gz"
         @file = File.open(filename)
       end
 
+      # Iterates over each FASTA record, yielding name and sequence.
       def each(&)
         file = @gzip ? Compress::Gzip::Reader.new(@file) : @file
         return if file.nil?
@@ -50,10 +54,12 @@ module Fastx
         file.close if file.is_a?(Compress::Gzip::Reader)
       end
 
+      # Closes the file handle.
       def close
         @file.close
       end
 
+      # Returns true if the file handle is closed.
       def closed?
         @file.closed?
       end

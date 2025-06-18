@@ -3,6 +3,7 @@ require "./fastq/writer"
 
 module Fastx
   module Fastq
+    # FASTQ record field types for parsing state machine.
     enum FIELD : UInt8
       IDENTIFIER = 0
       SEQUENCE   = 1
@@ -10,7 +11,9 @@ module Fastx
       QUALITY    = 3
     end
 
-    def self.open(filename, mode = "r", &) # block given
+    # Opens a FASTQ file for reading ("r") or writing ("w").
+    # Yields the Reader/Writer to the block and automatically closes it.
+    def self.open(filename, mode = "r") # block given
       case mode
       when "r"
         Reader.open(filename) { |reader| yield reader }
@@ -21,6 +24,8 @@ module Fastx
       end
     end
 
+    # Opens a FASTQ file for reading ("r") or writing ("w").
+    # Returns the Reader/Writer instance (manual close required).
     def self.open(filename, mode = "r")
       case mode
       when "r"

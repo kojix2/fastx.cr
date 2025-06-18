@@ -145,6 +145,16 @@ Fastx::Fastq::Writer.open("output.fq.gz") do |writer|
 end
 ```
 
+### Base encoding for SIMD processing
+
+Convert DNA sequences to UInt8 arrays suitable for SIMD or byte-wise processing:
+
+```crystal
+# Encode bases to UInt8 array (A,C,G,T,N → 65,67,71,84,78; others → 78)
+encoded = Fastx.encode_bases("AcGtNxyz")
+# Returns: Slice[65u8, 67u8, 71u8, 84u8, 78u8, 78u8, 78u8, 78u8]
+```
+
 ## Contributing
 
 1. Fork it (<https://github.com/kojix2/fastx/fork>)
