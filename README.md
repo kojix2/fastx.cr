@@ -1,7 +1,7 @@
 # Fastx.cr
 
-[![test](https://github.com/kojix2/fastx.cr/actions/workflows/ci.yml/badge.svg)](https://github.com/kojix2/fastx.cr/actions/workflows/ci.yml)
-[![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://kojix2.github.io/fastx.cr/)
+[![test](https://github.com/bio-cr/fastx.cr/actions/workflows/ci.yml/badge.svg)](https://github.com/bio-cr/fastx.cr/actions/workflows/ci.yml)
+[![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://bio-cr.github.io/fastx.cr/)
 
 A Crystal library for reading and writing FASTA and FASTQ files.
 
@@ -12,7 +12,7 @@ A Crystal library for reading and writing FASTA and FASTQ files.
    ```yaml
    dependencies:
      fastx:
-       github: kojix2/fastx.cr
+       github: bio-cr/fastx.c
    ```
 
 2. Run `shards install`
@@ -174,7 +174,7 @@ encoded = Fastx.encode_bases("AcGtNxyz")
 
 ## Contributing
 
-1. Fork it (<https://github.com/kojix2/fastx/fork>)
+1. Fork it (<https://github.com/bio-cr/fastx/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
