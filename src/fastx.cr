@@ -61,7 +61,7 @@ module Fastx
 
   # Converts a DNA sequence (String or IO::Memory) to a UInt8 slice,
   # where each base is encoded as a single byte (A, C, G, T, N → 65, 67, 71, 84, 78; others → 78).
-  # This representation is suitable for SIMD or byte-wise processing.
+  # This representation is suitable for byte-wise or array processing.
   def self.encode_bases(sequence : IO::Memory | String) : Slice(UInt8)
     sequence.to_slice.map do |c|
       normalize_base(c)

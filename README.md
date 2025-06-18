@@ -162,9 +162,9 @@ Fastx::Fastq::Writer.open("output.fq.gz") do |writer|
 end
 ```
 
-### Base encoding for SIMD processing
+### Base encoding
 
-Convert DNA sequences to UInt8 arrays suitable for SIMD or byte-wise processing:
+Convert DNA sequences to UInt8 arrays suitable for byte-wise or array processing:
 
 ```crystal
 # Encode bases to UInt8 array (A,C,G,T,N → 65,67,71,84,78; others → 78)
