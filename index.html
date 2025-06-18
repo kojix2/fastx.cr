@@ -188,6 +188,14 @@ reader.close
     puts <span class="s">&quot;Name: </span><span class="i">#{</span>name<span class="i">}</span><span class="s">&quot;</span>
     puts <span class="s">&quot;Sequence: </span><span class="i">#{</span>sequence.to_s<span class="i">}</span><span class="s">&quot;</span>
   <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Using each_copy for String copies (avoids buffer reuse issues)</span>
+<span class="t">Fastx</span><span class="t">::</span><span class="t">Fasta</span><span class="t">::</span><span class="t">Reader</span>.open(<span class="s">&quot;file.fa&quot;</span>) <span class="k">do</span> <span class="o">|</span>reader<span class="o">|</span>
+  reader.each_copy <span class="k">do</span> <span class="o">|</span>name, sequence<span class="o">|</span>
+    puts <span class="s">&quot;Name: </span><span class="i">#{</span>name<span class="i">}</span><span class="s">&quot;</span>
+    puts <span class="s">&quot;Sequence: </span><span class="i">#{</span>sequence<span class="i">}</span><span class="s">&quot;</span> <span class="c"># sequence is already a String</span>
+  <span class="k">end</span>
 <span class="k">end</span></code></pre>
 <h3><a id="reading-fastq-files" class="anchor" href="#reading-fastq-files">
   <svg class="octicon-link" aria-hidden="true">
@@ -209,6 +217,15 @@ reader.close
     puts <span class="s">&quot;ID: </span><span class="i">#{</span>identifier<span class="i">}</span><span class="s">&quot;</span>
     puts <span class="s">&quot;Sequence: </span><span class="i">#{</span>sequence.to_s<span class="i">}</span><span class="s">&quot;</span>
     puts <span class="s">&quot;Quality: </span><span class="i">#{</span>quality.to_s<span class="i">}</span><span class="s">&quot;</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c"># Using each_copy for String copies (avoids buffer reuse issues)</span>
+<span class="t">Fastx</span><span class="t">::</span><span class="t">Fastq</span><span class="t">::</span><span class="t">Reader</span>.open(<span class="s">&quot;file.fq&quot;</span>) <span class="k">do</span> <span class="o">|</span>reader<span class="o">|</span>
+  reader.each_copy <span class="k">do</span> <span class="o">|</span>identifier, sequence, quality<span class="o">|</span>
+    puts <span class="s">&quot;ID: </span><span class="i">#{</span>identifier<span class="i">}</span><span class="s">&quot;</span>
+    puts <span class="s">&quot;Sequence: </span><span class="i">#{</span>sequence<span class="i">}</span><span class="s">&quot;</span> <span class="c"># sequence is already a String</span>
+    puts <span class="s">&quot;Quality: </span><span class="i">#{</span>quality<span class="i">}</span><span class="s">&quot;</span>   <span class="c"># quality is already a String</span>
   <span class="k">end</span>
 <span class="k">end</span></code></pre>
 <h3><a id="writing-fasta-files" class="anchor" href="#writing-fasta-files">
@@ -292,12 +309,12 @@ writer.close
 <span class="t">Fastx</span><span class="t">::</span><span class="t">Fastq</span><span class="t">::</span><span class="t">Writer</span>.open(<span class="s">&quot;output.fq.gz&quot;</span>) <span class="k">do</span> <span class="o">|</span>writer<span class="o">|</span>
   writer.write(<span class="s">&quot;seq1&quot;</span>, <span class="s">&quot;ACGT&quot;</span>, <span class="s">&quot;!!!!&quot;</span>)
 <span class="k">end</span></code></pre>
-<h3><a id="base-encoding-for-simd-processing" class="anchor" href="#base-encoding-for-simd-processing">
+<h3><a id="base-encoding" class="anchor" href="#base-encoding">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Base encoding for SIMD processing</h3>
-<p>Convert DNA sequences to UInt8 arrays suitable for SIMD or byte-wise processing:</p>
+</a>Base encoding</h3>
+<p>Convert DNA sequences to UInt8 arrays suitable for byte-wise or array processing:</p>
 <pre><code class="language-crystal"><span class="c"># Encode bases to UInt8 array (A,C,G,T,N → 65,67,71,84,78; others → 78)</span>
 encoded <span class="o">=</span> <span class="t">Fastx</span>.encode_bases(<span class="s">&quot;AcGtNxyz&quot;</span>)
 <span class="c"># Returns: Slice[65u8, 67u8, 71u8, 84u8, 78u8, 78u8, 78u8, 78u8]</span></code></pre>
