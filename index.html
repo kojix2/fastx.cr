@@ -317,7 +317,26 @@ writer.close
 <p>Convert DNA sequences to UInt8 arrays suitable for byte-wise or array processing:</p>
 <pre><code class="language-crystal"><span class="c"># Encode bases to UInt8 array (A,C,G,T,N → 65,67,71,84,78; others → 78)</span>
 encoded <span class="o">=</span> <span class="t">Fastx</span>.encode_bases(<span class="s">&quot;AcGtNxyz&quot;</span>)
-<span class="c"># Returns: Slice[65u8, 67u8, 71u8, 84u8, 78u8, 78u8, 78u8, 78u8]</span></code></pre>
+<span class="c"># Returns: Slice[65u8, 67u8, 71u8, 84u8, 78u8, 78u8, 78u8, 78u8]</span>
+
+<span class="c"># Decode UInt8 array back to DNA string</span>
+decoded <span class="o">=</span> <span class="t">Fastx</span>.decode_bases(encoded)
+<span class="c"># Returns: &quot;ACGTNNNN&quot;</span></code></pre>
+<h3><a id="quality-encoding" class="anchor" href="#quality-encoding">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>Quality encoding</h3>
+<p>Convert quality strings to Phred score arrays and back:</p>
+<pre><code class="language-crystal"><span class="c"># Encode quality string to Phred scores (Phred+33 by default)</span>
+phred_scores <span class="o">=</span> <span class="t">Fastx</span>.encode_phred(<span class="s">&quot;IIIIHGF&quot;</span>) <span class="c"># =&gt; [40, 40, 40, 40, 39, 38, 37]</span>
+
+<span class="c"># Decode Phred scores to quality string</span>
+quality_str <span class="o">=</span> <span class="t">Fastx</span>.decode_phred([<span class="n">40</span>, <span class="n">40</span>, <span class="n">40</span>, <span class="n">40</span>, <span class="n">39</span>, <span class="n">38</span>, <span class="n">37</span>]) <span class="c"># =&gt; &quot;IIIIHGF&quot;</span>
+
+<span class="c"># Specify offset for Phred+64</span>
+phred_scores64 <span class="o">=</span> <span class="t">Fastx</span>.encode_phred(<span class="s">&quot;dddd&quot;</span>, offset: <span class="n">64</span>)
+quality_str64 <span class="o">=</span> <span class="t">Fastx</span>.decode_phred([<span class="n">36</span>, <span class="n">36</span>, <span class="n">36</span>, <span class="n">36</span>], offset: <span class="n">64</span>)</code></pre>
 <h2><a id="contributing" class="anchor" href="#contributing">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
