@@ -8,7 +8,7 @@ module Fastx
       @gzip : Bool
       @file : File
 
-      def self.open(filename : String | Path)
+      def self.open(filename : String | Path, &)
         reader = self.new(filename)
         yield reader
       ensure
@@ -21,7 +21,7 @@ module Fastx
         @file = File.open(filename)
       end
 
-      def each
+      def each(&)
         file = @gzip ? Compress::Gzip::Reader.new(@file) : @file
         return if file.nil?
 
@@ -51,7 +51,6 @@ module Fastx
             unless line.ascii_only?
               raise InvalidCharacterError.new(@filename, identifier, sequence)
             end
-            sequence.clear
             sequence << line
             next_field = FIELD::PLUS
           when FIELD::PLUS
@@ -63,7 +62,6 @@ module Fastx
             unless line.ascii_only?
               raise InvalidCharacterError.new(@filename, identifier, sequence)
             end
-            quality.clear
             quality << line
             next_field = FIELD::IDENTIFIER
           end

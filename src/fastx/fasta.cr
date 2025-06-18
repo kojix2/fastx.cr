@@ -3,7 +3,7 @@ require "./fasta/writer"
 
 module Fastx
   module Fasta
-    def self.open(filename, mode = "r") # block given
+    def self.open(filename, mode = "r", &) # block given
       case mode
       when "r"
         Reader.open(filename) { |reader| yield reader }

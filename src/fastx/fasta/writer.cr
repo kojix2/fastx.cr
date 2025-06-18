@@ -7,26 +7,31 @@ module Fastx
       @filename : Path
       @gzip : Bool
       @file : File
+      @writer : File | Compress::Gzip::Writer
 
-      def self.open(filename : String | Path)
-        reader = self.new(filename)
-        yield reader
+      def self.open(filename : String | Path, &)
+        writer = self.new(filename)
+        yield writer
       ensure
-        reader.try &.close
+        writer.try &.close
       end
 
       def initialize(filename : String | Path)
         @filename = Path.new(filename)
         @gzip = @filename.extension == ".gz"
         @file = File.open(filename, "w")
+        @writer = @gzip ? Compress::Gzip::Writer.new(@file) : @file
       end
 
       def write(name : String, sequence : String)
-        @file.puts(">#{name}")
-        @file.puts(sequence)
+        @writer.puts(">#{name}")
+        @writer.puts(sequence)
       end
 
       def close
+        if @writer.is_a?(Compress::Gzip::Writer)
+          @writer.close
+        end
         @file.close
       end
 

@@ -10,7 +10,7 @@ module Fastx
       QUALITY    = 3
     end
 
-    def self.open(filename, mode = "r") # block given
+    def self.open(filename, mode = "r", &) # block given
       case mode
       when "r"
         Reader.open(filename) { |reader| yield reader }

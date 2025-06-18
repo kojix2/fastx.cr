@@ -46,4 +46,18 @@ describe Fastx::Fasta::Reader do
       end
     end
   end
+
+  it "should raise InvalidCharacterError for non-ASCII characters" do
+    tempfile = File.tempfile("invalid.fa")
+    File.write(tempfile.path, ">test\nACGT\u{1F600}ACGT\n")
+
+    reader = Fastx::Fasta::Reader.new(tempfile.path)
+    expect_raises(Fastx::InvalidCharacterError) do
+      reader.each do |name, sequence|
+        # This should raise an exception
+      end
+    end
+    reader.close
+    tempfile.delete
+  end
 end

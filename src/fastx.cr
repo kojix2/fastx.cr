@@ -3,33 +3,39 @@ require "./fastx/fasta"
 require "./fastx/fastq"
 
 module Fastx
-  def self.open(filename : Path | String, mode = "r", format = nil) # block given
-    case filename.to_s
-    when /\.fastq$/, /\.fq$/, /\.fastq.gz$/, /\.fq.gz$/
+  def self.open(filename : Path | String, mode = "r", format = nil, &) # block given
+    case format
+    when "fastq"
       Fastq.open(filename, mode) { |f| yield f }
-    when /\.fasta$/, /\.fa$/, /\.fasta.gz$/, /\.fa.gz$/
-      Fasta.open(filename, mode) { |f| yield f }
-    when format == "fastq"
-      Fastq.open(filename, mode) { |f| yield f }
-    when format == "fasta"
+    when "fasta"
       Fasta.open(filename, mode) { |f| yield f }
     else
-      raise ArgumentError.new("Unknown format: #{filename}")
+      case filename.to_s
+      when /\.fastq$/, /\.fq$/, /\.fastq.gz$/, /\.fq.gz$/
+        Fastq.open(filename, mode) { |f| yield f }
+      when /\.fasta$/, /\.fa$/, /\.fasta.gz$/, /\.fa.gz$/
+        Fasta.open(filename, mode) { |f| yield f }
+      else
+        raise ArgumentError.new("Unknown format: #{filename}")
+      end
     end
   end
 
   def self.open(filename : Path | String, mode = "r", format = nil)
-    case filename.to_s
-    when /\.fastq$/, /\.fq$/, /\.fastq.gz$/, /\.fq.gz$/
+    case format
+    when "fastq"
       Fastq.open(filename, mode)
-    when /\.fasta$/, /\.fa$/, /\.fasta.gz$/, /\.fa.gz$/
-      Fasta.open(filename, mode)
-    when format == "fastq"
-      Fastq.open(filename, mode)
-    when format == "fasta"
+    when "fasta"
       Fasta.open(filename, mode)
     else
-      raise ArgumentError.new("Unknown format: #{filename}")
+      case filename.to_s
+      when /\.fastq$/, /\.fq$/, /\.fastq.gz$/, /\.fq.gz$/
+        Fastq.open(filename, mode)
+      when /\.fasta$/, /\.fa$/, /\.fasta.gz$/, /\.fa.gz$/
+        Fasta.open(filename, mode)
+      else
+        raise ArgumentError.new("Unknown format: #{filename}")
+      end
     end
   end
 
@@ -59,7 +65,7 @@ module Fastx
 
   # Experimental
 
-  def self.normalize_sequence(sequence : IO::Memory | String) : Slice
+  def self.normalize_sequence(sequence : IO::Memory | String, &) : Slice
     sequence.to_slice.map do |c|
       yield normalize_base(c)
     end

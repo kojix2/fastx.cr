@@ -74,4 +74,59 @@ describe Fastx do
       .should eq(">chr1 1\nAAAAAAAAAA\n>chr2 2\nCCCCCCCCC\n")
     tempfile.delete
   end
+
+  it "should write a fastq file" do
+    tempfile = File.tempfile("quack.fq")
+    writer = Fastx.open(tempfile.path, "w").as(Fastx::Fastq::Writer)
+    writer.write("chr1_106_509:0/1", "A" * 10, "5" * 10)
+    writer.write("chr2_437_492:1/1", "C" * 9, "!" * 9)
+    writer.close
+    File.read(tempfile.path)
+      .should eq("@chr1_106_509:0/1\nAAAAAAAAAA\n+\n5555555555\n@chr2_437_492:1/1\nCCCCCCCCC\n+\n!!!!!!!!!\n")
+    tempfile.delete
+  end
+
+  it "should open file with format specification" do
+    tempfile = File.tempfile("test_file")
+
+    # Write as FASTA using format parameter
+    Fastx.open(tempfile.path, "w", "fasta") do |writer|
+      writer.as(Fastx::Fasta::Writer).write("test", "ACGT")
+    end
+
+    # Read as FASTA using format parameter
+    Fastx.open(tempfile.path, "r", "fasta") do |reader|
+      reader.as(Fastx::Fasta::Reader).each do |name, sequence|
+        name.should eq "test"
+        sequence.to_s.should eq "ACGT"
+      end
+    end
+
+    tempfile.delete
+  end
+
+  it "should raise ArgumentError for unknown format" do
+    expect_raises(ArgumentError, "Unknown format: unknown_file.xyz") do
+      Fastx.open("unknown_file.xyz", "r")
+    end
+  end
+
+  it "should normalize base characters" do
+    Fastx.normalize_base(65u8).should eq 65u8  # A
+    Fastx.normalize_base(97u8).should eq 65u8  # a -> A
+    Fastx.normalize_base(67u8).should eq 67u8  # C
+    Fastx.normalize_base(99u8).should eq 67u8  # c -> C
+    Fastx.normalize_base(71u8).should eq 71u8  # G
+    Fastx.normalize_base(103u8).should eq 71u8 # g -> G
+    Fastx.normalize_base(84u8).should eq 84u8  # T
+    Fastx.normalize_base(116u8).should eq 84u8 # t -> T
+    Fastx.normalize_base(78u8).should eq 78u8  # N
+    Fastx.normalize_base(110u8).should eq 78u8 # n -> N
+    Fastx.normalize_base(88u8).should eq 78u8  # X -> N (unknown)
+  end
+
+  it "should normalize sequence" do
+    result = Fastx.normalize_sequence("AcGtN")
+    result.should eq Slice[65u8, 67u8, 71u8, 84u8, 78u8] # ACGTN
+  end
 end

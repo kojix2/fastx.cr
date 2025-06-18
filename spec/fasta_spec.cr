@@ -34,4 +34,26 @@ describe Fastx::Fasta do
       end
     end
   end
+
+  it "should write a fasta file" do
+    tempfile = File.tempfile("quack.fa")
+    writer = Fastx::Fasta.open(tempfile.path, "w")
+    writer.as(Fastx::Fasta::Writer).write("chr1 1", "A" * 10)
+    writer.as(Fastx::Fasta::Writer).write("chr2 2", "C" * 9)
+    writer.close
+    File.read(tempfile.path)
+      .should eq(">chr1 1\nAAAAAAAAAA\n>chr2 2\nCCCCCCCCC\n")
+    tempfile.delete
+  end
+
+  it "should write a fasta file with a block" do
+    tempfile = File.tempfile("quack.fa")
+    Fastx::Fasta.open(tempfile.path, "w") do |writer|
+      writer.as(Fastx::Fasta::Writer).write("chr1 1", "A" * 10)
+      writer.as(Fastx::Fasta::Writer).write("chr2 2", "C" * 9)
+    end
+    File.read(tempfile.path)
+      .should eq(">chr1 1\nAAAAAAAAAA\n>chr2 2\nCCCCCCCCC\n")
+    tempfile.delete
+  end
 end
