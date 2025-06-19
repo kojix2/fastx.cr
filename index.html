@@ -260,12 +260,14 @@ writer.close
   writer.write(<span class="s">&quot;seq1&quot;</span>, <span class="s">&quot;ACGTACGT&quot;</span>, <span class="s">&quot;!!!!!!!!&quot;</span>)
   writer.write(<span class="s">&quot;seq2&quot;</span>, <span class="s">&quot;TGCATGCA&quot;</span>, <span class="s">&quot;~~~~~~~~&quot;</span>)
 <span class="k">end</span></code></pre>
-<h3><a id="auto-detection-by-file-extension" class="anchor" href="#auto-detection-by-file-extension">
+<details>
+<summary>Format detection and specification</summary>
+<h3><a id="format-detection-by-file-extension" class="anchor" href="#format-detection-by-file-extension">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
   </svg>
-</a>Auto-detection by file extension</h3>
-<pre><code class="language-crystal"><span class="c"># Automatically detects format from file extension</span>
+</a>Format detection by file extension</h3>
+<pre><code class="language-crystal"><span class="c"># Format is inferred from file extension, but type casting is still required</span>
 <span class="t">Fastx</span>.open(<span class="s">&quot;file.fa&quot;</span>) <span class="k">do</span> <span class="o">|</span>reader<span class="o">|</span>
   reader.<span class="k">as</span>(<span class="t">Fastx</span><span class="t">::</span><span class="t">Fasta</span><span class="t">::</span><span class="t">Reader</span>).each <span class="k">do</span> <span class="o">|</span>name, sequence<span class="o">|</span>
     puts <span class="s">&quot;</span><span class="i">#{</span>name<span class="i">}</span><span class="s">: </span><span class="i">#{</span>sequence.to_s<span class="i">}</span><span class="s">&quot;</span>
@@ -292,6 +294,7 @@ writer.close
 <span class="t">Fastx</span>.open(<span class="s">&quot;output&quot;</span>, <span class="s">&quot;w&quot;</span>, <span class="t">Fastx</span><span class="t">::</span><span class="t">Format</span><span class="t">::</span><span class="t">FASTQ</span>) <span class="k">do</span> <span class="o">|</span>writer<span class="o">|</span>
   writer.<span class="k">as</span>(<span class="t">Fastx</span><span class="t">::</span><span class="t">Fastq</span><span class="t">::</span><span class="t">Writer</span>).write(<span class="s">&quot;seq1&quot;</span>, <span class="s">&quot;ACGT&quot;</span>, <span class="s">&quot;!!!!&quot;</span>)
 <span class="k">end</span></code></pre>
+</details>
 <h3><a id="gzip-support" class="anchor" href="#gzip-support">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
@@ -329,14 +332,14 @@ decoded <span class="o">=</span> <span class="t">Fastx</span>.decode_bases(encod
 </a>Quality encoding</h3>
 <p>Convert quality strings to Phred score arrays and back:</p>
 <pre><code class="language-crystal"><span class="c"># Encode quality string to Phred scores (Phred+33 by default)</span>
-phred_scores <span class="o">=</span> <span class="t">Fastx</span>.encode_phred(<span class="s">&quot;IIIIHGF&quot;</span>) <span class="c"># =&gt; [40, 40, 40, 40, 39, 38, 37]</span>
+phred_scores <span class="o">=</span> <span class="t">Fastx</span>.encode_phred(<span class="s">&quot;IIIIHGF&quot;</span>) <span class="c"># =&gt; [40_u8, 40_u8, 40_u8, 40_u8, 39_u8, 38_u8, 37_u8]</span>
 
 <span class="c"># Decode Phred scores to quality string</span>
-quality_str <span class="o">=</span> <span class="t">Fastx</span>.decode_phred([<span class="n">40</span>, <span class="n">40</span>, <span class="n">40</span>, <span class="n">40</span>, <span class="n">39</span>, <span class="n">38</span>, <span class="n">37</span>]) <span class="c"># =&gt; &quot;IIIIHGF&quot;</span>
+quality_str <span class="o">=</span> <span class="t">Fastx</span>.decode_phred([<span class="n">40_u8</span>, <span class="n">40_u8</span>, <span class="n">40_u8</span>, <span class="n">40_u8</span>, <span class="n">39_u8</span>, <span class="n">38_u8</span>, <span class="n">37_u8</span>]) <span class="c"># =&gt; &quot;IIIIHGF&quot;</span>
 
 <span class="c"># Specify offset for Phred+64</span>
 phred_scores64 <span class="o">=</span> <span class="t">Fastx</span>.encode_phred(<span class="s">&quot;dddd&quot;</span>, offset: <span class="n">64</span>)
-quality_str64 <span class="o">=</span> <span class="t">Fastx</span>.decode_phred([<span class="n">36</span>, <span class="n">36</span>, <span class="n">36</span>, <span class="n">36</span>], offset: <span class="n">64</span>)</code></pre>
+quality_str64 <span class="o">=</span> <span class="t">Fastx</span>.decode_phred([<span class="n">36_u8</span>, <span class="n">36_u8</span>, <span class="n">36_u8</span>, <span class="n">36_u8</span>], offset: <span class="n">64</span>)</code></pre>
 <h2><a id="contributing" class="anchor" href="#contributing">
   <svg class="octicon-link" aria-hidden="true">
     <use href="#octicon-link"/>
