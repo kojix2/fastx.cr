@@ -138,7 +138,7 @@ describe Fastx do
   it "should encode and decode phred scores (default offset 33)" do
     quality = "IIIIHGF"
     scores = Fastx.encode_phred(quality)
-    scores.should eq [40, 40, 40, 40, 39, 38, 37]
+    scores.should eq [40_u8, 40_u8, 40_u8, 40_u8, 39_u8, 38_u8, 37_u8]
     decoded = Fastx.decode_phred(scores)
     decoded.should eq quality
   end
@@ -146,7 +146,7 @@ describe Fastx do
   it "should encode and decode phred scores with offset 64" do
     quality = "dddd"
     scores = Fastx.encode_phred(quality, offset: 64)
-    scores.should eq [36, 36, 36, 36]
+    scores.should eq [36_u8, 36_u8, 36_u8, 36_u8]
     decoded = Fastx.decode_phred(scores, offset: 64)
     decoded.should eq quality
   end

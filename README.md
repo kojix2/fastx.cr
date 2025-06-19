@@ -112,10 +112,13 @@ Fastx::Fastq::Writer.open("output.fq") do |writer|
 end
 ```
 
-### Auto-detection by file extension
+<details>
+<summary>Format detection and specification</summary>
+
+### Format detection by file extension
 
 ```crystal
-# Automatically detects format from file extension
+# Format is inferred from file extension, but type casting is still required
 Fastx.open("file.fa") do |reader|
   reader.as(Fastx::Fasta::Reader).each do |name, sequence|
     puts "#{name}: #{sequence.to_s}"
@@ -143,6 +146,8 @@ Fastx.open("output", "w", Fastx::Format::FASTQ) do |writer|
   writer.as(Fastx::Fastq::Writer).write("seq1", "ACGT", "!!!!")
 end
 ```
+
+</details>
 
 ### Gzip support
 
@@ -182,14 +187,14 @@ Convert quality strings to Phred score arrays and back:
 
 ```crystal
 # Encode quality string to Phred scores (Phred+33 by default)
-phred_scores = Fastx.encode_phred("IIIIHGF") # => [40, 40, 40, 40, 39, 38, 37]
+phred_scores = Fastx.encode_phred("IIIIHGF") # => [40_u8, 40_u8, 40_u8, 40_u8, 39_u8, 38_u8, 37_u8]
 
 # Decode Phred scores to quality string
-quality_str = Fastx.decode_phred([40, 40, 40, 40, 39, 38, 37]) # => "IIIIHGF"
+quality_str = Fastx.decode_phred([40_u8, 40_u8, 40_u8, 40_u8, 39_u8, 38_u8, 37_u8]) # => "IIIIHGF"
 
 # Specify offset for Phred+64
 phred_scores64 = Fastx.encode_phred("dddd", offset: 64)
-quality_str64 = Fastx.decode_phred([36, 36, 36, 36], offset: 64)
+quality_str64 = Fastx.decode_phred([36_u8, 36_u8, 36_u8, 36_u8], offset: 64)
 ```
 
 ## Contributing
