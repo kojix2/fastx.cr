@@ -167,6 +167,8 @@ Fastx::Fastq::Writer.open("output.fq.gz") do |writer|
 end
 ```
 
+Note: Gzip refers to standard gzip, not BGZF (bgzip)
+
 ### Base encoding
 
 Convert DNA sequences to UInt8 arrays suitable for byte-wise or array processing:
