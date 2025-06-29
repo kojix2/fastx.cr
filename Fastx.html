@@ -176,70 +176,70 @@
   </h2>
   
     
-      <a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx.cr#L6" target="_blank">
+      <a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx.cr#L6" target="_blank">
         fastx.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx/exceptions.cr#L1" target="_blank">
+      <a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx/exceptions.cr#L1" target="_blank">
         fastx/exceptions.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx/fasta.cr#L4" target="_blank">
+      <a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx/fasta.cr#L4" target="_blank">
         fastx/fasta.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx/fasta/reader.cr#L4" target="_blank">
+      <a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx/fasta/reader.cr#L4" target="_blank">
         fastx/fasta/reader.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx/fasta/writer.cr#L4" target="_blank">
+      <a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx/fasta/writer.cr#L4" target="_blank">
         fastx/fasta/writer.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx/fastq.cr#L4" target="_blank">
+      <a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx/fastq.cr#L4" target="_blank">
         fastx/fastq.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx/fastq/reader.cr#L4" target="_blank">
+      <a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx/fastq/reader.cr#L4" target="_blank">
         fastx/fastq/reader.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx/fastq/writer.cr#L4" target="_blank">
+      <a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx/fastq/writer.cr#L4" target="_blank">
         fastx/fastq/writer.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx/format.cr#L1" target="_blank">
+      <a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx/format.cr#L1" target="_blank">
         fastx/format.cr
       </a>
     
     <br/>
   
     
-      <a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx/version.cr#L1" target="_blank">
+      <a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx/version.cr#L1" target="_blank">
         fastx/version.cr
       </a>
     
@@ -297,9 +297,9 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#encode_bases%28sequence%3AIO%3A%3AMemory%7CString%29%3ASlice%28UInt8%29-class-method" class="signature"><strong>.encode_bases</strong>(sequence : IO::Memory | String) : Slice(UInt8)</a>
+        <a href="#encode_bases%28sequence%3AIO%3A%3AMemory%7CString%2C%2A%2Ciupac%3ABool%3Dfalse%29%3ASlice%28UInt8%29-class-method" class="signature"><strong>.encode_bases</strong>(sequence : IO::Memory | String, *, iupac : Bool = <span class="n">false</span>) : Slice(UInt8)</a>
         
-          <div class="summary"><p>Converts a DNA sequence (String or IO::Memory) to a UInt8 slice, where each base is encoded as a single byte (A, C, G, T, N → 65, 67, 71, 84, 78; others → 78).</p></div>
+          <div class="summary"><p>Converts a DNA sequence (String or IO::Memory) to a UInt8 slice, where each base is encoded as a single byte.</p></div>
         
       </li>
     
@@ -311,9 +311,9 @@
       </li>
     
       <li class="entry-summary">
-        <a href="#normalize_base%28c%3AUInt8%29%3AUInt8-class-method" class="signature"><strong>.normalize_base</strong>(c : UInt8) : UInt8</a>
+        <a href="#normalize_base%28c%3AUInt8%2C%2A%2Ciupac%3ABool%3Dfalse%29%3AUInt8-class-method" class="signature"><strong>.normalize_base</strong>(c : UInt8, *, iupac : Bool = <span class="n">false</span>) : UInt8</a>
         
-          <div class="summary"><p>Normalizes a single base character to uppercase ACGTN.</p></div>
+          <div class="summary"><p>Normalizes a single base character to uppercase.</p></div>
         
       </li>
     
@@ -371,7 +371,7 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx.cr#L72" target="_blank">View source</a>]
+          [<a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx.cr#L118" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -392,30 +392,33 @@
       <br/>
       <div>
         
-          [<a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx/fastq.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx/fastq.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="encode_bases(sequence:IO::Memory|String):Slice(UInt8)-class-method">
+    <div class="entry-detail" id="encode_bases(sequence:IO::Memory|String,*,iupac:Bool=false):Slice(UInt8)-class-method">
       <div class="signature">
         
-        def self.<strong>encode_bases</strong>(sequence : IO::Memory | String) : Slice(UInt8)
+        def self.<strong>encode_bases</strong>(sequence : IO::Memory | String, *, iupac : Bool = <span class="n">false</span>) : Slice(UInt8)
 
-        <a class="method-permalink" href="#encode_bases%28sequence%3AIO%3A%3AMemory%7CString%29%3ASlice%28UInt8%29-class-method">#</a>
+        <a class="method-permalink" href="#encode_bases%28sequence%3AIO%3A%3AMemory%7CString%2C%2A%2Ciupac%3ABool%3Dfalse%29%3ASlice%28UInt8%29-class-method">#</a>
       </div>
       
         <div class="doc">
           
           <p>Converts a DNA sequence (String or IO::Memory) to a UInt8 slice,
-where each base is encoded as a single byte (A, C, G, T, N → 65, 67, 71, 84, 78; others → 78).
+where each base is encoded as a single byte.
+When iupac is true, supports IUPAC nucleotide codes (R, Y, S, W, K, M, B, D, H, V).
+When iupac is false, only standard bases (A, C, G, T, N) are preserved.
+Non-recognized characters are converted to N (78u8).
 This representation is suitable for byte-wise or array processing.</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx.cr#L65" target="_blank">View source</a>]
+          [<a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx.cr#L111" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -436,29 +439,31 @@ This representation is suitable for byte-wise or array processing.</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx/fastq.cr#L42" target="_blank">View source</a>]
+          [<a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx/fastq.cr#L42" target="_blank">View source</a>]
         
       </div>
     </div>
   
-    <div class="entry-detail" id="normalize_base(c:UInt8):UInt8-class-method">
+    <div class="entry-detail" id="normalize_base(c:UInt8,*,iupac:Bool=false):UInt8-class-method">
       <div class="signature">
         
-        def self.<strong>normalize_base</strong>(c : UInt8) : UInt8
+        def self.<strong>normalize_base</strong>(c : UInt8, *, iupac : Bool = <span class="n">false</span>) : UInt8
 
-        <a class="method-permalink" href="#normalize_base%28c%3AUInt8%29%3AUInt8-class-method">#</a>
+        <a class="method-permalink" href="#normalize_base%28c%3AUInt8%2C%2A%2Ciupac%3ABool%3Dfalse%29%3AUInt8-class-method">#</a>
       </div>
       
         <div class="doc">
           
-          <p>Normalizes a single base character to uppercase ACGTN.
-Non-ACGTN characters are converted to N (78u8).</p>
+          <p>Normalizes a single base character to uppercase.
+When iupac is true, supports IUPAC nucleotide codes (R, Y, S, W, K, M, B, D, H, V).
+When iupac is false, only standard bases (A, C, G, T, N) are preserved.
+Non-recognized characters are converted to N (78u8).</p>
         </div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -480,7 +485,7 @@ Yields the appropriate Reader/Writer to the block and automatically closes it.</
       <br/>
       <div>
         
-          [<a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx.cr#L9" target="_blank">View source</a>]
+          [<a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx.cr#L9" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -502,7 +507,7 @@ Returns the appropriate Reader/Writer instance (manual close required).</p>
       <br/>
       <div>
         
-          [<a href="https://github.com/bio-cr/fastx.cr/blob/1a983ecbdb09cc3dfdbb9e6a719e30dfeade1834/src/fastx.cr#L29" target="_blank">View source</a>]
+          [<a href="https://github.com/bio-cr/fastx.cr/blob/b8035348688704ce0f97e5a7b8b2b081c494ca60/src/fastx.cr#L29" target="_blank">View source</a>]
         
       </div>
     </div>
